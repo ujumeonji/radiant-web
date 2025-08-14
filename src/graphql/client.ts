@@ -1,8 +1,8 @@
 import {
   ApolloClient,
-  InMemoryCache,
   createHttpLink,
   from,
+  InMemoryCache,
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
 
@@ -28,7 +28,17 @@ export const apolloClient = new ApolloClient({
   cache: new InMemoryCache({
     typePolicies: {
       Query: {
-        fields: {},
+        fields: {
+          posts: {
+            keyArgs: false,
+            merge(existing = { edges: [], pageInfo: {} }, incoming) {
+              return {
+                ...incoming,
+                edges: [...existing.edges, ...incoming.edges],
+              };
+            },
+          },
+        },
       },
     },
   }),
