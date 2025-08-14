@@ -1,11 +1,10 @@
 import { CodegenConfig } from "@graphql-codegen/cli";
 
 const config: CodegenConfig = {
-  schema:
-    process.env.NEXT_PUBLIC_GRAPHQL_URL || "http://localhost:4000/graphql",
-  documents: ["src/graphql/schema/**/*.graphql"],
+  schema: "src/graphql/schema/**/*.graphql",
+  documents: ["src/graphql/operations/**/*.graphql"],
   generates: {
-    "src/graphql/generated/graphql.ts": {
+    "src/graphql/generated/": {
       preset: "client",
       config: {
         documentMode: "graphQLTag",
