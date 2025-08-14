@@ -11,9 +11,14 @@ const httpLink = createHttpLink({
 });
 
 const authLink = setContext((_, { headers }) => {
+  let token = "";
+  if (typeof window !== "undefined") {
+    token = localStorage.getItem("token") ?? "";
+  }
   return {
     headers: {
       ...headers,
+      authorization: token ? `Bearer ${token}` : "",
     },
   };
 });
@@ -30,7 +35,7 @@ export const apolloClient = new ApolloClient({
   connectToDevTools: process.env.NODE_ENV === "development",
   defaultOptions: {
     watchQuery: {
-      errorPolicy: "ignore",
+      errorPolicy: "all",
     },
     query: {
       errorPolicy: "all",
