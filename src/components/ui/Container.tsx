@@ -1,3 +1,4 @@
+import { CONTAINER } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 import { ReactNode } from "react";
 
@@ -7,14 +8,5 @@ interface ContainerProps {
 }
 
 export default function Container({ children, className }: ContainerProps) {
-  return (
-    <div
-      className={cn(
-        "container mx-auto max-w-screen-lg px-4 sm:px-6 lg:px-8",
-        className
-      )}
-    >
-      {children}
-    </div>
-  );
+  return <div className={cn(CONTAINER.full, className)}>{children}</div>;
 }

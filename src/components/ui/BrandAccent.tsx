@@ -1,3 +1,4 @@
+import { BRAND } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 
 interface BrandAccentProps {
@@ -5,5 +6,5 @@ interface BrandAccentProps {
 }
 
 export default function BrandAccent({ className }: BrandAccentProps) {
-  return <div className={cn("border-t-4 border-slate-800", className)}></div>;
+  return <div className={cn(BRAND.accent.border, className)}></div>;
 }

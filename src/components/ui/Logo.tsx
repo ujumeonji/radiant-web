@@ -1,3 +1,4 @@
+import { BRAND } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 
@@ -15,8 +16,8 @@ export default function Logo({
   const logoContent = (
     <span
       className={cn(
-        "text-3xl font-bold tracking-tighter",
-        variant === "dark" ? "text-gray-800" : "text-slate-50",
+        BRAND.logo.base,
+        variant === "dark" ? BRAND.logo.dark : BRAND.logo.light,
         className
       )}
     >
