@@ -1,0 +1,59 @@
+query GetUser($id: ID!) {
+  user(id: $id) {
+    id
+    email
+    username
+    displayName
+    avatar
+    isActive
+    createdAt
+    updatedAt
+  }
+}
+
+query GetCurrentUser {
+  currentUser {
+    id
+    email
+    username
+    displayName
+    avatar
+    isActive
+    createdAt
+    updatedAt
+  }
+}
+
+query GetUsers($limit: Int, $offset: Int) {
+  users(limit: $limit, offset: $offset) {
+    id
+    username
+    displayName
+    avatar
+    isActive
+    createdAt
+  }
+}
+
+mutation CreateUser($input: CreateUserInput!) {
+  createUser(input: $input) {
+    id
+    email
+    username
+    displayName
+    createdAt
+  }
+}
+
+mutation UpdateUser($id: ID!, $input: UpdateUserInput!) {
+  updateUser(id: $id, input: $input) {
+    id
+    displayName
+    avatar
+    updatedAt
+  }
+}
+
+mutation DeleteUser($id: ID!) {
+  deleteUser(id: $id)
+}
