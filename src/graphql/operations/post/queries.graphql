@@ -1,111 +1,20 @@
-query GetPost($id: ID!) {
-  post(id: $id) {
-    id
-    title
-    content
-    excerpt
-    slug
-    status
-    author {
-      id
-      username
-      displayName
-      avatar
+query Posts($first: Int, $after: String) {
+  posts(first: $first, after: $after) @connection(key: "Posts_posts") {
+    edges {
+      node {
+        id
+        title
+        body
+        createdAt
+        likes
+        commentsCount
+        thumbnailUrl
+      }
+      cursor
     }
-    tags
-    metadata
-    publishedAt
-    createdAt
-    updatedAt
-  }
-}
-
-query GetPostBySlug($slug: String!) {
-  postBySlug(slug: $slug) {
-    id
-    title
-    content
-    excerpt
-    slug
-    status
-    author {
-      id
-      username
-      displayName
-      avatar
+    pageInfo {
+      hasNextPage
+      endCursor
     }
-    tags
-    metadata
-    publishedAt
-    createdAt
-    updatedAt
   }
-}
-
-query GetPosts($limit: Int, $offset: Int, $status: PostStatus) {
-  posts(limit: $limit, offset: $offset, status: $status) {
-    id
-    title
-    excerpt
-    slug
-    status
-    author {
-      id
-      username
-      displayName
-      avatar
-    }
-    tags
-    publishedAt
-    createdAt
-  }
-}
-
-query GetPostsByAuthor($authorId: ID!, $limit: Int, $offset: Int) {
-  postsByAuthor(authorId: $authorId, limit: $limit, offset: $offset) {
-    id
-    title
-    excerpt
-    slug
-    status
-    tags
-    publishedAt
-    createdAt
-  }
-}
-
-mutation CreatePost($input: CreatePostInput!) {
-  createPost(input: $input) {
-    id
-    title
-    content
-    excerpt
-    slug
-    status
-    author {
-      id
-      username
-      displayName
-    }
-    tags
-    createdAt
-  }
-}
-
-mutation UpdatePost($id: ID!, $input: UpdatePostInput!) {
-  updatePost(id: $id, input: $input) {
-    id
-    title
-    content
-    excerpt
-    slug
-    status
-    tags
-    metadata
-    updatedAt
-  }
-}
-
-mutation DeletePost($id: ID!) {
-  deletePost(id: $id)
 }
