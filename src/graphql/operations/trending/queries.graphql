@@ -1,0 +1,16 @@
+query TrendingPosts($limit: Int = 10) {
+  trendingPosts(limit: $limit) {
+    id
+    title
+    body
+    createdAt
+    likes
+    commentsCount
+    thumbnailUrl
+    author {
+      id
+      username
+      name
+    }
+  }
+}
