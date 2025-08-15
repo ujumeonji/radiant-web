@@ -18,10 +18,8 @@ export default function Footer() {
                 <Logo variant="light" href={undefined} />
               </div>
               <p className="text-slate-400 max-w-md mb-6">
-                A curated translation platform that bridges language barriers,
-                bringing carefully selected technical, organizational, and
-                career insights from around the world to share knowledge
-                globally.
+                Breaking Language Barriers to Unlock Global Technical and Career
+                Insights
               </p>
             </div>
 
@@ -79,7 +77,7 @@ export default function Footer() {
 
         <div className="border-t border-slate-700 py-6">
           <div className="text-center text-slate-500 text-sm">
-            © 2025 radiant. All rights reserved.
+            © 2025 RadiantInk. All rights reserved.
           </div>
         </div>
       </Container>
