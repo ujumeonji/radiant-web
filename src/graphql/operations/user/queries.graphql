@@ -1,0 +1,11 @@
+query RecommendedAuthors($limit: Int = 5) {
+  recommendedAuthors(limit: $limit) {
+    id
+    username
+    name
+    avatar
+    followersCount
+    followingCount
+    fields
+  }
+}
