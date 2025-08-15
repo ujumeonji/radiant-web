@@ -77,7 +77,6 @@ export default function RecommendedAuthors() {
                     {author.name}
                   </p>
                   <p className="text-xs text-gray-500">
-                    {author.postsCount} posts •{" "}
                     {formatFollowers(author.followersCount)} followers
                   </p>
                 </div>
