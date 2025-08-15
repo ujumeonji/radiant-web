@@ -16,7 +16,7 @@ export default function ArticleFeed({ articles }: ArticleFeedProps) {
 
       <div className="h-4"></div>
       <div className="text-center py-8 text-gray-500">
-        모든 게시글을 불러왔습니다.
+        All articles have been loaded.
       </div>
     </div>
   );
