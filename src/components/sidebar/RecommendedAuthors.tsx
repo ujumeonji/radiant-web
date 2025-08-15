@@ -5,6 +5,7 @@ import { useQueryStates } from "@/lib/hooks/useQueryStates";
 import { formatFollowers } from "@/lib/utils";
 import QueryWrapper from "@/components/ui/QueryWrapper";
 import { useQuery } from "@apollo/client";
+import Image from "next/image";
 import Link from "next/link";
 
 export default function RecommendedAuthors() {
@@ -36,10 +37,13 @@ export default function RecommendedAuthors() {
           >
             <div className="flex items-center gap-3 py-2 hover:bg-gray-50 transition-colors rounded">
               {author.avatar ? (
-                <img
+                <Image
                   src={author.avatar}
                   alt={author.name}
+                  width={40}
+                  height={40}
                   className="w-10 h-10 rounded-full object-cover"
+                  loading="lazy"
                 />
               ) : (
                 <div className="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center text-white font-semibold text-sm">

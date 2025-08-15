@@ -1,6 +1,7 @@
 "use client";
 
 import { Post } from "@/types/post";
+import Image from "next/image";
 
 interface PostCardProps {
   post: Post;
@@ -11,10 +12,13 @@ export default function PostCard({ post }: PostCardProps) {
     <article className="border-b border-gray-200 pb-6 mb-6 last:border-b-0">
       {post.thumbnailUrl && (
         <div className="mb-4">
-          <img
+          <Image
             src={post.thumbnailUrl}
             alt={post.title}
+            width={800}
+            height={192}
             className="w-full h-48 object-cover rounded-lg"
+            loading="lazy"
           />
         </div>
       )}
@@ -37,7 +41,13 @@ export default function PostCard({ post }: PostCardProps) {
 
           <div className="flex items-center space-x-4">
             <span className="flex items-center space-x-1">
-              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+              <svg
+                className="w-4 h-4"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                aria-hidden="true"
+                role="img"
+              >
                 <path
                   fillRule="evenodd"
                   d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"
@@ -53,6 +63,8 @@ export default function PostCard({ post }: PostCardProps) {
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
+                aria-hidden="true"
+                role="img"
               >
                 <path
                   strokeLinecap="round"

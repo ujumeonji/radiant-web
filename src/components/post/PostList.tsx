@@ -39,7 +39,7 @@ export default function PostList({ initialFirst = 10 }: PostListProps) {
   };
 
   const loadingSkeleton = (
-    <div className="space-y-6">
+    <div className="space-y-6" aria-live="polite" aria-label="Loading posts">
       {Array.from({ length: 3 }).map((_, i) => (
         <div key={i} className="animate-pulse">
           <div className="h-48 bg-gray-200 rounded-lg mb-4"></div>
@@ -84,7 +84,8 @@ export default function PostList({ initialFirst = 10 }: PostListProps) {
           <button
             onClick={loadMore}
             disabled={loading}
-            className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+            aria-label={loading ? "Loading more posts" : "Load more posts"}
           >
             {loading ? "Loading..." : "Load More"}
           </button>

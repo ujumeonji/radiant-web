@@ -40,34 +40,38 @@ export default function Footer() {
             <div>
               <h4 className="text-slate-100 font-medium mb-4">Connect</h4>
               <div className="flex space-x-4">
-                <a
-                  href="#"
-                  className="text-slate-400 hover:text-slate-100 transition-colors"
-                  aria-label="GitHub"
+                <button
+                  type="button"
+                  className="text-slate-400 hover:text-slate-100 transition-colors disabled:opacity-50"
+                  aria-label="GitHub (Coming soon)"
+                  disabled
                 >
                   <Github className="w-5 h-5" />
-                </a>
-                <a
-                  href="#"
-                  className="text-slate-400 hover:text-slate-100 transition-colors"
-                  aria-label="Twitter"
+                </button>
+                <button
+                  type="button"
+                  className="text-slate-400 hover:text-slate-100 transition-colors disabled:opacity-50"
+                  aria-label="Twitter (Coming soon)"
+                  disabled
                 >
                   <Twitter className="w-5 h-5" />
-                </a>
-                <a
-                  href="#"
-                  className="text-slate-400 hover:text-slate-100 transition-colors"
-                  aria-label="LinkedIn"
+                </button>
+                <button
+                  type="button"
+                  className="text-slate-400 hover:text-slate-100 transition-colors disabled:opacity-50"
+                  aria-label="LinkedIn (Coming soon)"
+                  disabled
                 >
                   <Linkedin className="w-5 h-5" />
-                </a>
-                <a
-                  href="#"
-                  className="text-slate-400 hover:text-slate-100 transition-colors"
-                  aria-label="Instagram"
+                </button>
+                <button
+                  type="button"
+                  className="text-slate-400 hover:text-slate-100 transition-colors disabled:opacity-50"
+                  aria-label="Instagram (Coming soon)"
+                  disabled
                 >
                   <Instagram className="w-5 h-5" />
-                </a>
+                </button>
               </div>
             </div>
           </div>
