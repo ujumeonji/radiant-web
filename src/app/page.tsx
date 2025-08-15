@@ -2,11 +2,6 @@ import PostList from "@/components/post/PostList";
 import PopularTopics from "@/components/sidebar/PopularTopics";
 import RecommendedAuthors from "@/components/sidebar/RecommendedAuthors";
 import TrendingSection from "@/components/sidebar/TrendingSection";
-import {
-  mockAuthors,
-  mockPopularTopics,
-  mockTrendingArticles,
-} from "@/data/mockData";
 
 export default function Home() {
   return (
@@ -16,9 +11,9 @@ export default function Home() {
 
         <div className="hidden lg:block w-80">
           <div className="space-y-8 sticky top-24">
-            <TrendingSection articles={mockTrendingArticles} />
-            <PopularTopics topics={mockPopularTopics} />
-            <RecommendedAuthors authors={mockAuthors} />
+            <TrendingSection />
+            <PopularTopics />
+            <RecommendedAuthors />
           </div>
         </div>
       </div>
