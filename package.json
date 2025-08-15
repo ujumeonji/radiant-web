@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "codegen": "graphql-codegen --config codegen.ts",
-    "codegen:watch": "graphql-codegen --config codegen.ts --watch"
+    "codegen:watch": "graphql-codegen --config codegen.ts --watch",
+    "pretty": "prettier --write \"./**/*.{js,jsx,mjs,cjs,ts,tsx,json}\""
   },
   "dependencies": {
     "@apollo/client": "^3.13.9",
@@ -32,6 +33,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "15.4.6",
+    "prettier": "^3.6.2",
     "tailwindcss": "^4",
     "tw-animate-css": "^1.3.6",
     "typescript": "^5"

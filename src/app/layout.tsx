@@ -1,6 +1,6 @@
 import Footer from "@/components/layout/Footer";
 import Header from "@/components/layout/Header";
-import Container from "@/components/ui/Container";
+import { GraphQLProvider } from "@/lib/apollo-provider";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
@@ -28,13 +28,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
       >
-        <Header />
-        <Container>
-          <main>{children}</main>
-        </Container>
-        <Footer />
+        <GraphQLProvider>
+          <Header />
+          <main className="flex-1">{children}</main>
+          <Footer />
+        </GraphQLProvider>
       </body>
     </html>
   );

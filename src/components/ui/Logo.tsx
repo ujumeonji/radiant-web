@@ -18,7 +18,7 @@ export default function Logo({
       className={cn(
         BRAND.logo.base,
         variant === "dark" ? BRAND.logo.dark : BRAND.logo.light,
-        className
+        className,
       )}
     >
       radiant

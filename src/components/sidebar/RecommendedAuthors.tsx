@@ -1,0 +1,68 @@
+"use client";
+
+import { RecommendedAuthorsDocument } from "@/graphql/generated/graphql";
+import { useQueryStates } from "@/lib/hooks/useQueryStates";
+import { formatFollowers } from "@/lib/utils";
+import QueryWrapper from "@/components/ui/QueryWrapper";
+import { useQuery } from "@apollo/client";
+import Image from "next/image";
+import Link from "next/link";
+
+export default function RecommendedAuthors() {
+  const queryResult = useQuery(RecommendedAuthorsDocument, {
+    variables: { limit: 3 },
+  });
+
+  const {
+    data: authors,
+    isLoading,
+    hasError,
+    isEmpty,
+  } = useQueryStates(queryResult, (data) => data.recommendedAuthors);
+
+  return (
+    <QueryWrapper
+      isLoading={isLoading}
+      hasError={hasError}
+      isEmpty={isEmpty}
+      title="Recommended Authors"
+      emptyMessage="No recommended authors available"
+    >
+      <div className="space-y-4">
+        {authors?.map((author) => (
+          <Link
+            key={author.id}
+            href={`/authors/${author.username}`}
+            className="group block"
+          >
+            <div className="flex items-center gap-3 py-2 hover:bg-gray-50 transition-colors rounded">
+              {author.avatar ? (
+                <Image
+                  src={author.avatar}
+                  alt={author.name}
+                  width={40}
+                  height={40}
+                  className="w-10 h-10 rounded-full object-cover"
+                  loading="lazy"
+                />
+              ) : (
+                <div className="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center text-white font-semibold text-sm">
+                  {author.name.charAt(0)}
+                </div>
+              )}
+
+              <div className="flex-1">
+                <p className="font-medium text-sm text-gray-900 group-hover:text-slate-800">
+                  {author.name}
+                </p>
+                <p className="text-xs text-gray-500">
+                  {formatFollowers(author.followersCount)} followers
+                </p>
+              </div>
+            </div>
+          </Link>
+        ))}
+      </div>
+    </QueryWrapper>
+  );
+}
