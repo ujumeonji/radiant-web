@@ -55,7 +55,7 @@ export default function PopularTopics() {
                   {topic.name}
                 </span>
                 <span className="text-xs text-gray-500">
-                  {topic.postCount}개
+                  {topic.postCount} posts
                 </span>
               </div>
             </Link>
