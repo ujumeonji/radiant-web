@@ -17,14 +17,12 @@ export interface QueryStatesResult<T> {
 /**
  * Hook to extract common loading, error, and empty state logic from GraphQL queries
  * @param queryResult - Apollo Client query result
- * @param config - Configuration for messages and behavior
  * @param dataExtractor - Function to extract the actual data array from the query result
  * @returns Standardized state object
  */
 export function useQueryStates<TData, TResult>(
   queryResult: QueryResult<TData>,
   dataExtractor: (data: TData) => TResult[] | undefined,
-  config: QueryStatesConfig = {},
 ): QueryStatesResult<TResult[]> {
   const { data, loading, error } = queryResult;
 
