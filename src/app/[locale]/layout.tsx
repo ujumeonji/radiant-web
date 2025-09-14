@@ -23,7 +23,8 @@ export async function generateMetadata({
 }: {
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
-  const messages = await getMessages();
+  const { locale } = await params;
+  const messages = await getMessages({ locale });
   const layout = messages.layout as
     | { title?: string; description?: string }
     | undefined;
@@ -43,15 +44,12 @@ export default async function RootLayout({
 }>) {
   const { locale } = await params;
 
-  // Validate locale
   const locales = ["ko", "ja", "zh", "en"];
   if (!locales.includes(locale)) {
     notFound();
   }
 
-  // Providing all messages to the client
-  // side is the easiest way to get started
-  const messages = await getMessages();
+  const messages = await getMessages({ locale });
 
   return (
     <html lang={locale}>
