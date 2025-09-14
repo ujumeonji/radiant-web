@@ -17,7 +17,7 @@ export default function Header() {
     <header className="bg-white/80 backdrop-blur-sm sticky top-0 z-50 border-b">
       <BrandAccent />
       <Container>
-        <div className="flex items-center justify-between">
+        <div className="flex items-stretch justify-between">
           <div className="flex items-center justify-center px-6 py-4 border-l border-r">
             <Logo variant="dark" />
           </div>
