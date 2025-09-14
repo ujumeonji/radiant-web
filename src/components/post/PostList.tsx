@@ -39,64 +39,118 @@ export default function PostList({ initialFirst = 10 }: PostListProps) {
   };
 
   const loadingSkeleton = (
-    <div className="space-y-6" aria-live="polite" aria-label="Loading posts">
+    <section
+      className="space-y-6"
+      aria-live="polite"
+      aria-label="포스트 로딩 중"
+      role="status"
+    >
       {Array.from({ length: 3 }).map((_, i) => (
-        <div key={i} className="animate-pulse">
-          <div className="h-48 bg-gray-200 rounded-lg mb-4"></div>
+        <article
+          key={i}
+          className="animate-pulse"
+          aria-label={`포스트 ${i + 1} 로딩 중`}
+        >
+          <div
+            className="h-48 bg-gray-200 rounded-lg mb-4"
+            role="presentation"
+          ></div>
           <div className="space-y-3">
-            <div className="h-6 bg-gray-200 rounded w-3/4"></div>
-            <div className="h-4 bg-gray-200 rounded w-full"></div>
-            <div className="h-4 bg-gray-200 rounded w-2/3"></div>
+            <div
+              className="h-6 bg-gray-200 rounded w-3/4"
+              role="presentation"
+            ></div>
+            <div
+              className="h-4 bg-gray-200 rounded w-full"
+              role="presentation"
+            ></div>
+            <div
+              className="h-4 bg-gray-200 rounded w-2/3"
+              role="presentation"
+            ></div>
             <div className="flex justify-between">
-              <div className="h-4 bg-gray-200 rounded w-24"></div>
-              <div className="h-4 bg-gray-200 rounded w-16"></div>
+              <div
+                className="h-4 bg-gray-200 rounded w-24"
+                role="presentation"
+              ></div>
+              <div
+                className="h-4 bg-gray-200 rounded w-16"
+                role="presentation"
+              ></div>
             </div>
           </div>
-        </div>
+        </article>
       ))}
-    </div>
+    </section>
   );
 
   if (loading && !data) {
-    return <div className="flex-1 max-w-3xl">{loadingSkeleton}</div>;
+    return (
+      <main className="flex-1 max-w-3xl" role="main" aria-label="포스트 목록">
+        {loadingSkeleton}
+      </main>
+    );
   }
 
   if (error) {
     return (
-      <div className="flex-1 max-w-3xl">
-        <div className="text-center py-8 text-gray-500">No posts found.</div>
-      </div>
+      <main className="flex-1 max-w-3xl" role="main" aria-label="포스트 목록">
+        <section
+          className="text-center py-8 text-gray-500"
+          role="alert"
+          aria-live="polite"
+        >
+          <h2 className="sr-only">오류 발생</h2>
+          <p>포스트를 불러오는데 실패했습니다.</p>
+        </section>
+      </main>
     );
   }
 
   const posts = data?.posts.edges.map((edge) => edge.node) || [];
 
   return (
-    <div className="flex-1 max-w-3xl">
-      <div className="space-y-6">
+    <main className="flex-1 max-w-3xl" role="main" aria-label="포스트 목록">
+      <section
+        className="space-y-6"
+        aria-label={`총 ${posts.length}개의 포스트`}
+      >
         {posts.map((post: Post) => (
           <PostCard key={post.id} post={post} />
         ))}
-      </div>
+      </section>
 
       {hasMore && (
-        <div className="text-center py-8">
+        <nav
+          className="text-center py-8"
+          role="navigation"
+          aria-label="더 많은 포스트 로드"
+        >
           <button
+            type="button"
             onClick={loadMore}
             disabled={loading}
             className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-            aria-label={loading ? "Loading more posts" : "Load more posts"}
+            aria-label={
+              loading ? "더 많은 포스트 로딩 중" : "더 많은 포스트 불러오기"
+            }
+            aria-describedby={loading ? "loading-status" : undefined}
           >
-            {loading ? "Loading..." : "Load More"}
+            {loading ? "로딩 중..." : "더 보기"}
           </button>
-        </div>
+          {loading && (
+            <div id="loading-status" className="sr-only" aria-live="polite">
+              더 많은 포스트를 불러오고 있습니다.
+            </div>
+          )}
+        </nav>
       )}
 
       {!hasMore && posts.length > 0 && (
-        <div className="text-center py-8 text-gray-500">
-          All posts have been loaded.
-        </div>
+        <footer className="text-center py-8 text-gray-500" role="contentinfo">
+          <p aria-live="polite">모든 포스트를 불러왔습니다.</p>
+        </footer>
       )}
-    </div>
+    </main>
   );
 }
