@@ -1,6 +1,8 @@
 "use client";
 
 import { Post } from "@/types/post";
+import { formatDate } from "@/lib/date-format";
+import { useLocale, useTranslations } from "next-intl";
 import Image from "next/image";
 
 interface PostCardProps {
@@ -8,6 +10,12 @@ interface PostCardProps {
 }
 
 export default function PostCard({ post }: PostCardProps) {
+  const locale = useLocale();
+  const t = useTranslations();
+
+  const formattedDate = formatDate(post.createdAt, locale);
+  const ariaLabelDate = t("post.publishedDate", { date: formattedDate });
+
   return (
     <article
       className="border-b border-gray-200 pb-6 mb-6 last:border-b-0"
@@ -18,7 +26,7 @@ export default function PostCard({ post }: PostCardProps) {
         <figure className="mb-4">
           <Image
             src={post.thumbnailUrl}
-            alt={`${post.title} 썸네일 이미지`}
+            alt={t("post.thumbnailAlt", { title: post.title })}
             width={800}
             height={192}
             className="w-full h-48 object-cover rounded-lg"
@@ -44,33 +52,19 @@ export default function PostCard({ post }: PostCardProps) {
         )}
 
         <footer className="flex items-center justify-between text-sm text-gray-500">
-          <time
-            dateTime={post.createdAt}
-            aria-label={`게시일: ${new Date(post.createdAt).toLocaleDateString(
-              "ko-KR",
-              {
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-              },
-            )}`}
-          >
-            {new Date(post.createdAt).toLocaleDateString("ko-KR", {
-              year: "numeric",
-              month: "long",
-              day: "numeric",
-            })}
+          <time dateTime={post.createdAt} aria-label={ariaLabelDate}>
+            {formattedDate}
           </time>
 
           <div
             className="flex items-center space-x-4"
             role="group"
-            aria-label="포스트 상호작용"
+            aria-label={t("post.postInteractions")}
           >
             <div
               className="flex items-center space-x-1"
               role="group"
-              aria-label={`좋아요 ${post.likes}개`}
+              aria-label={t("post.likesCount", { count: post.likes })}
             >
               <svg
                 className="w-4 h-4"
@@ -85,13 +79,15 @@ export default function PostCard({ post }: PostCardProps) {
                   clipRule="evenodd"
                 />
               </svg>
-              <span aria-label="좋아요 수">{post.likes}</span>
+              <span aria-label={t("post.likes")}>{post.likes}</span>
             </div>
 
             <div
               className="flex items-center space-x-1"
               role="group"
-              aria-label={`댓글 ${post.commentsCount}개`}
+              aria-label={t("post.commentsCount", {
+                count: post.commentsCount,
+              })}
             >
               <svg
                 className="w-4 h-4"
@@ -108,7 +104,7 @@ export default function PostCard({ post }: PostCardProps) {
                   d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
                 />
               </svg>
-              <span aria-label="댓글 수">{post.commentsCount}</span>
+              <span aria-label={t("post.comments")}>{post.commentsCount}</span>
             </div>
           </div>
         </footer>

@@ -4,11 +4,13 @@ import { RecommendedAuthorsDocument } from "@/graphql/generated/graphql";
 import { useQueryStates } from "@/lib/hooks/useQueryStates";
 import { formatFollowers } from "@/lib/utils";
 import QueryWrapper from "@/components/ui/QueryWrapper";
+import { Link } from "@/i18n/routing";
 import { useQuery } from "@apollo/client";
+import { useTranslations } from "next-intl";
 import Image from "next/image";
-import Link from "next/link";
 
 export default function RecommendedAuthors() {
+  const t = useTranslations();
   const queryResult = useQuery(RecommendedAuthorsDocument, {
     variables: { limit: 3 },
   });
@@ -25,14 +27,17 @@ export default function RecommendedAuthors() {
       isLoading={isLoading}
       hasError={hasError}
       isEmpty={isEmpty}
-      title="Recommended Authors"
-      emptyMessage="No recommended authors available"
+      title={t("sidebar.recommendedAuthors")}
+      emptyMessage={t("sidebar.noRecommendedAuthors")}
     >
       <div className="space-y-4">
         {authors?.map((author) => (
           <Link
             key={author.id}
-            href={`/authors/${author.username}`}
+            href={{
+              pathname: "/authors/[username]",
+              params: { username: author.username },
+            }}
             className="group block"
           >
             <div className="flex items-center gap-3 py-2 hover:bg-gray-50 transition-colors rounded">

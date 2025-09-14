@@ -1,0 +1,73 @@
+{
+  "common": {
+    "loading": "로딩 중...",
+    "loadMore": "더 보기",
+    "noDataAvailable": "데이터가 없습니다",
+    "somethingWentWrong": "문제가 발생했습니다",
+    "home": "홈",
+    "openMenu": "메뉴 열기",
+    "closeMenu": "메뉴 닫기",
+    "language": "언어"
+  },
+  "layout": {
+    "title": "Radiant - 글로벌 기술 및 커리어 인사이트",
+    "description": "언어의 장벽을 넘어 글로벌 기술과 커리어 인사이트를 제공합니다"
+  },
+  "header": {
+    "home": "홈"
+  },
+  "footer": {
+    "slogan": "언어의 장벽을 넘어 글로벌 기술과 커리어 인사이트를 제공합니다",
+    "quickLinks": "빠른 링크",
+    "connect": "연결",
+    "comingSoon": "(준비 중)",
+    "copyright": "© 2024 Radiant. 모든 권리 보유."
+  },
+  "post": {
+    "thumbnailAlt": "{title} 썸네일 이미지",
+    "publishedDate": "게시일: {date}",
+    "likes": "좋아요",
+    "likesCount": "좋아요 {count}개",
+    "comments": "댓글",
+    "commentsCount": "댓글 {count}개",
+    "postInteractions": "포스트 상호작용",
+    "postList": "포스트 목록",
+    "loading": "포스트 로딩 중",
+    "postLoading": "포스트 {index} 로딩 중",
+    "loadingMorePosts": "더 많은 포스트 로딩 중",
+    "loadMorePosts": "더 많은 포스트 불러오기",
+    "allPostsLoaded": "모든 포스트를 불러왔습니다",
+    "failedToLoad": "포스트를 불러오는데 실패했습니다",
+    "totalPosts": "총 {count}개의 포스트",
+    "loadingMoreDescription": "더 많은 포스트를 불러오고 있습니다",
+    "by": "작성자"
+  },
+  "sidebar": {
+    "popularTopics": "인기 주제",
+    "noPopularTopics": "인기 주제가 없습니다",
+    "recommendedAuthors": "추천 작성자",
+    "noRecommendedAuthors": "추천 작성자가 없습니다",
+    "trending": "트렌딩",
+    "noTrendingPosts": "트렌딩 포스트가 없습니다"
+  },
+  "error": {
+    "pageNotFound": "페이지를 찾을 수 없습니다",
+    "pageNotFoundDescription": "요청하신 페이지가 존재하지 않거나 이동되었을 수 있습니다.",
+    "checkUrlOrNavigate": "URL을 다시 확인하시거나 아래 버튼을 통해 다른 페이지로 이동해 주세요.",
+    "backToHome": "홈으로 돌아가기",
+    "goToPrevious": "이전 페이지로",
+    "suggestedPages": "이런 페이지는 어떠세요?",
+    "latestPosts": "최신 글 보기",
+    "latestPostsDescription": "최신 번역 글과 트렌딩 콘텐츠를 확인해보세요.",
+    "search": "검색하기",
+    "searchDescription": "원하는 주제의 글을 검색으로 찾아보세요. (준비 중)",
+    "errorNavigation": "오류 페이지 내비게이션",
+    "homePageLabel": "홈페이지로 돌아가기",
+    "previousPageLabel": "이전 페이지로 돌아가기",
+    "recommendedPages": "추천 페이지",
+    "latestPostsPageLabel": "최신 글 보기 페이지로 이동",
+    "searchFeatureDisabled": "검색 기능 (준비 중)",
+    "morePostsNavigation": "더 많은 포스트 로드",
+    "errorOccurred": "오류 발생"
+  }
+}

@@ -3,10 +3,12 @@
 import { PopularTopicsDocument } from "@/graphql/generated/graphql";
 import { useQueryStates } from "@/lib/hooks/useQueryStates";
 import QueryWrapper from "@/components/ui/QueryWrapper";
+import { Link } from "@/i18n/routing";
 import { useQuery } from "@apollo/client";
-import Link from "next/link";
+import { useTranslations } from "next-intl";
 
 export default function PopularTopics() {
+  const t = useTranslations();
   const queryResult = useQuery(PopularTopicsDocument, {
     variables: { limit: 5 },
   });
@@ -23,14 +25,14 @@ export default function PopularTopics() {
       isLoading={isLoading}
       hasError={hasError}
       isEmpty={isEmpty}
-      title="Popular Topics"
-      emptyMessage="No popular topics available"
+      title={t("sidebar.popularTopics")}
+      emptyMessage={t("sidebar.noPopularTopics")}
     >
       <div className="space-y-3">
         {topics?.map((topic) => (
           <Link
             key={topic.slug}
-            href={`/topics/${topic.slug}`}
+            href={{ pathname: "/topics/[slug]", params: { slug: topic.slug } }}
             className="group block"
           >
             <div className="flex items-center justify-between py-2 hover:bg-gray-50 transition-colors rounded">

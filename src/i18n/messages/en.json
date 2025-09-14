@@ -1,0 +1,73 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "loadMore": "Load More",
+    "noDataAvailable": "No data available",
+    "somethingWentWrong": "Something went wrong",
+    "home": "Home",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "language": "Language"
+  },
+  "layout": {
+    "title": "Radiant - Global Technical and Career Insights",
+    "description": "Breaking Language Barriers to Unlock Global Technical and Career Insights"
+  },
+  "header": {
+    "home": "Home"
+  },
+  "footer": {
+    "slogan": "Breaking Language Barriers to Unlock Global Technical and Career Insights",
+    "quickLinks": "Quick Links",
+    "connect": "Connect",
+    "comingSoon": "(Coming soon)",
+    "copyright": "© 2024 Radiant. All rights reserved."
+  },
+  "post": {
+    "thumbnailAlt": "{title} thumbnail image",
+    "publishedDate": "Published: {date}",
+    "likes": "likes",
+    "likesCount": "{count} likes",
+    "comments": "comments",
+    "commentsCount": "{count} comments",
+    "postInteractions": "Post interactions",
+    "postList": "Post list",
+    "loading": "Posts loading",
+    "postLoading": "Post {index} loading",
+    "loadingMorePosts": "Loading more posts",
+    "loadMorePosts": "Load more posts",
+    "allPostsLoaded": "All posts have been loaded",
+    "failedToLoad": "Failed to load posts",
+    "totalPosts": "Total {count} posts",
+    "loadingMoreDescription": "Loading more posts",
+    "by": "by"
+  },
+  "sidebar": {
+    "popularTopics": "Popular Topics",
+    "noPopularTopics": "No popular topics available",
+    "recommendedAuthors": "Recommended Authors",
+    "noRecommendedAuthors": "No recommended authors available",
+    "trending": "Trending",
+    "noTrendingPosts": "No trending posts available"
+  },
+  "error": {
+    "pageNotFound": "Page Not Found",
+    "pageNotFoundDescription": "The page you requested does not exist or may have been moved.",
+    "checkUrlOrNavigate": "Please double-check the URL or navigate to other pages using the buttons below.",
+    "backToHome": "Back to Home",
+    "goToPrevious": "Go to Previous",
+    "suggestedPages": "How about these pages?",
+    "latestPosts": "View Latest Posts",
+    "latestPostsDescription": "Check out the latest translated articles and trending content.",
+    "search": "Search",
+    "searchDescription": "Find articles on topics you're interested in through search. (Coming soon)",
+    "errorNavigation": "Error page navigation",
+    "homePageLabel": "Return to homepage",
+    "previousPageLabel": "Return to previous page",
+    "recommendedPages": "Recommended pages",
+    "latestPostsPageLabel": "Go to latest posts page",
+    "searchFeatureDisabled": "Search feature (Coming soon)",
+    "morePostsNavigation": "Load more posts",
+    "errorOccurred": "Error occurred"
+  }
+}

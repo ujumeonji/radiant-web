@@ -3,6 +3,7 @@
 import { PostsDocument } from "@/graphql/generated/graphql";
 import { Post } from "@/types/post";
 import { useQuery } from "@apollo/client";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 import PostCard from "./PostCard";
 
@@ -12,6 +13,7 @@ interface PostListProps {
 
 export default function PostList({ initialFirst = 10 }: PostListProps) {
   const [hasMore, setHasMore] = useState(true);
+  const t = useTranslations();
 
   const { data, loading, error, fetchMore } = useQuery(PostsDocument, {
     variables: { first: initialFirst },
@@ -42,14 +44,14 @@ export default function PostList({ initialFirst = 10 }: PostListProps) {
     <section
       className="space-y-6"
       aria-live="polite"
-      aria-label="포스트 로딩 중"
+      aria-label={t("post.loading")}
       role="status"
     >
       {Array.from({ length: 3 }).map((_, i) => (
         <article
           key={i}
           className="animate-pulse"
-          aria-label={`포스트 ${i + 1} 로딩 중`}
+          aria-label={t("post.postLoading", { index: i + 1 })}
         >
           <div
             className="h-48 bg-gray-200 rounded-lg mb-4"
@@ -86,7 +88,11 @@ export default function PostList({ initialFirst = 10 }: PostListProps) {
 
   if (loading && !data) {
     return (
-      <main className="flex-1 max-w-3xl" role="main" aria-label="포스트 목록">
+      <main
+        className="flex-1 max-w-3xl"
+        role="main"
+        aria-label={t("post.postList")}
+      >
         {loadingSkeleton}
       </main>
     );
@@ -94,14 +100,18 @@ export default function PostList({ initialFirst = 10 }: PostListProps) {
 
   if (error) {
     return (
-      <main className="flex-1 max-w-3xl" role="main" aria-label="포스트 목록">
+      <main
+        className="flex-1 max-w-3xl"
+        role="main"
+        aria-label={t("post.postList")}
+      >
         <section
           className="text-center py-8 text-gray-500"
           role="alert"
           aria-live="polite"
         >
-          <h2 className="sr-only">오류 발생</h2>
-          <p>포스트를 불러오는데 실패했습니다.</p>
+          <h2 className="sr-only">{t("error.errorOccurred")}</h2>
+          <p>{t("post.failedToLoad")}</p>
         </section>
       </main>
     );
@@ -110,10 +120,14 @@ export default function PostList({ initialFirst = 10 }: PostListProps) {
   const posts = data?.posts.edges.map((edge) => edge.node) || [];
 
   return (
-    <main className="flex-1 max-w-3xl" role="main" aria-label="포스트 목록">
+    <main
+      className="flex-1 max-w-3xl"
+      role="main"
+      aria-label={t("post.postList")}
+    >
       <section
         className="space-y-6"
-        aria-label={`총 ${posts.length}개의 포스트`}
+        aria-label={t("post.totalPosts", { count: posts.length })}
       >
         {posts.map((post: Post) => (
           <PostCard key={post.id} post={post} />
@@ -124,7 +138,7 @@ export default function PostList({ initialFirst = 10 }: PostListProps) {
         <nav
           className="text-center py-8"
           role="navigation"
-          aria-label="더 많은 포스트 로드"
+          aria-label={t("error.morePostsNavigation")}
         >
           <button
             type="button"
@@ -132,15 +146,15 @@ export default function PostList({ initialFirst = 10 }: PostListProps) {
             disabled={loading}
             className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
             aria-label={
-              loading ? "더 많은 포스트 로딩 중" : "더 많은 포스트 불러오기"
+              loading ? t("post.loadingMorePosts") : t("post.loadMorePosts")
             }
             aria-describedby={loading ? "loading-status" : undefined}
           >
-            {loading ? "로딩 중..." : "더 보기"}
+            {loading ? t("common.loading") : t("common.loadMore")}
           </button>
           {loading && (
             <div id="loading-status" className="sr-only" aria-live="polite">
-              더 많은 포스트를 불러오고 있습니다.
+              {t("post.loadingMoreDescription")}
             </div>
           )}
         </nav>
@@ -148,7 +162,7 @@ export default function PostList({ initialFirst = 10 }: PostListProps) {
 
       {!hasMore && posts.length > 0 && (
         <footer className="text-center py-8 text-gray-500" role="contentinfo">
-          <p aria-live="polite">모든 포스트를 불러왔습니다.</p>
+          <p aria-live="polite">{t("post.allPostsLoaded")}</p>
         </footer>
       )}
     </main>

@@ -3,11 +3,13 @@
 import { TrendingPostsDocument } from "@/graphql/generated/graphql";
 import { useQueryStates } from "@/lib/hooks/useQueryStates";
 import QueryWrapper from "@/components/ui/QueryWrapper";
+import { Link } from "@/i18n/routing";
 import { useQuery } from "@apollo/client";
+import { useTranslations } from "next-intl";
 import { MessageCircle, ThumbsUp, TrendingUp } from "lucide-react";
-import Link from "next/link";
 
 export default function TrendingSection() {
+  const t = useTranslations();
   const queryResult = useQuery(TrendingPostsDocument, {
     variables: { limit: 5 },
   });
@@ -22,7 +24,7 @@ export default function TrendingSection() {
   const title = (
     <div className="flex items-center gap-2">
       <TrendingUp className="w-5 h-5 text-slate-800" />
-      <span>Trending</span>
+      <span>{t("sidebar.trending")}</span>
     </div>
   );
 
@@ -32,13 +34,13 @@ export default function TrendingSection() {
       hasError={hasError}
       isEmpty={isEmpty}
       title={title}
-      emptyMessage="No trending posts available"
+      emptyMessage={t("sidebar.noTrendingPosts")}
     >
       <div className="space-y-6">
         {posts?.map((post, index) => (
           <Link
             key={post.id}
-            href={`/posts/${post.id}`}
+            href={{ pathname: "/posts/[id]", params: { id: post.id } }}
             className="group block"
           >
             <div className="flex gap-4 pb-6 border-b border-gray-100 last:border-b-0 last:pb-0">
@@ -51,7 +53,7 @@ export default function TrendingSection() {
               <div className="flex-1 min-w-0">
                 <div className="mb-2">
                   <span className="text-xs text-gray-500 font-medium">
-                    by {post.author?.name || post.author?.username}
+                    {t("post.by")} {post.author?.name || post.author?.username}
                   </span>
                 </div>
 
