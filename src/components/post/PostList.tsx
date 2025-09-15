@@ -4,7 +4,7 @@ import { PostsDocument } from "@/graphql/generated/graphql";
 import { Post } from "@/types/post";
 import { useQuery } from "@apollo/client";
 import { useTranslations } from "next-intl";
-import { useState } from "react";
+import { useState, useRef, useCallback, useEffect } from "react";
 import PostCard from "./PostCard";
 
 interface PostListProps {
@@ -13,6 +13,8 @@ interface PostListProps {
 
 export default function PostList({ initialFirst = 10 }: PostListProps) {
   const [hasMore, setHasMore] = useState(true);
+  const [isLoadingMore, setIsLoadingMore] = useState(false);
+  const observerRef = useRef<HTMLDivElement>(null);
   const t = useTranslations();
 
   const { data, loading, error, fetchMore } = useQuery(PostsDocument, {
@@ -23,9 +25,10 @@ export default function PostList({ initialFirst = 10 }: PostListProps) {
     },
   });
 
-  const loadMore = async () => {
-    if (!hasMore || loading) return;
+  const loadMore = useCallback(async () => {
+    if (!hasMore || loading || isLoadingMore) return;
 
+    setIsLoadingMore(true);
     try {
       const result = await fetchMore({
         variables: {
@@ -37,8 +40,43 @@ export default function PostList({ initialFirst = 10 }: PostListProps) {
       setHasMore(result.data.posts.pageInfo.hasNextPage);
     } catch (err) {
       console.error("Failed to load more posts:", err);
+    } finally {
+      setIsLoadingMore(false);
     }
-  };
+  }, [
+    hasMore,
+    loading,
+    isLoadingMore,
+    fetchMore,
+    data?.posts.pageInfo.endCursor,
+    initialFirst,
+  ]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const target = entries[0];
+        if (target.isIntersecting && hasMore && !loading && !isLoadingMore) {
+          loadMore();
+        }
+      },
+      {
+        rootMargin: "100px",
+        threshold: 0.1,
+      },
+    );
+
+    const currentObserverRef = observerRef.current;
+    if (currentObserverRef) {
+      observer.observe(currentObserverRef);
+    }
+
+    return () => {
+      if (currentObserverRef) {
+        observer.unobserve(currentObserverRef);
+      }
+    };
+  }, [hasMore, loading, isLoadingMore, loadMore]);
 
   const loadingSkeleton = (
     <section
@@ -135,29 +173,19 @@ export default function PostList({ initialFirst = 10 }: PostListProps) {
       </section>
 
       {hasMore && (
-        <nav
-          className="text-center py-8"
-          role="navigation"
-          aria-label={t("error.morePostsNavigation")}
+        <div
+          ref={observerRef}
+          className="flex justify-center py-8"
+          aria-live="polite"
+          aria-label={t("post.loadingMorePosts")}
         >
-          <button
-            type="button"
-            onClick={loadMore}
-            disabled={loading}
-            className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-            aria-label={
-              loading ? t("post.loadingMorePosts") : t("post.loadMorePosts")
-            }
-            aria-describedby={loading ? "loading-status" : undefined}
-          >
-            {loading ? t("common.loading") : t("common.loadMore")}
-          </button>
-          {loading && (
-            <div id="loading-status" className="sr-only" aria-live="polite">
-              {t("post.loadingMoreDescription")}
+          {isLoadingMore && (
+            <div className="flex items-center gap-2 text-gray-500">
+              <div className="animate-spin h-5 w-5 border-2 border-gray-300 border-t-slate-800 rounded-full"></div>
+              <span>{t("common.loading")}</span>
             </div>
           )}
-        </nav>
+        </div>
       )}
 
       {!hasMore && posts.length > 0 && (
