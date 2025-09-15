@@ -64,7 +64,15 @@
     "relatedPostsLoading": "正在寻找类似故事...",
     "readingTime": "{minutes} 分钟阅读",
     "unknownAuthor": "匿名作者",
-    "tech": "技术"
+    "tech": "技术",
+    "moreParticipants": "等{count}位",
+    "postAuthorInfo": "帖子作者信息",
+    "viewOriginalPost": "查看原帖",
+    "participantsList": "参与者列表",
+    "viewModeControls": "查看模式控制",
+    "toggleHighlight": "切换高亮",
+    "selectViewMode": "选择查看模式",
+    "readPost": "阅读帖子"
   },
   "sidebar": {
     "popularTopics": "热门话题",

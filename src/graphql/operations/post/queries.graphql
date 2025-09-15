@@ -9,12 +9,47 @@ query Posts($first: Int, $after: String) {
         likes
         commentsCount
         thumbnailUrl
+        author {
+          id
+          name
+          username
+          avatar
+        }
       }
       cursor
     }
     pageInfo {
       hasNextPage
       endCursor
+    }
+  }
+}
+
+query GetPost($id: ID!) {
+  post(id: $id) {
+    id
+    title
+    body
+    createdAt
+    updatedAt
+    likes
+    commentsCount
+    thumbnailUrl
+    author {
+      id
+      name
+      username
+      avatar
+      followersCount
+      followingCount
+      fields
+    }
+    participants(limit: 10) {
+      id
+      name
+      username
+      avatar
+      fields
     }
   }
 }

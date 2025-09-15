@@ -64,7 +64,15 @@
     "relatedPostsLoading": "비슷한 글들을 찾고 있어요...",
     "readingTime": "약 {minutes}분 소요",
     "unknownAuthor": "익명의 저자",
-    "tech": "기술"
+    "tech": "기술",
+    "moreParticipants": "외 {count}명",
+    "postAuthorInfo": "포스트 작성자 정보",
+    "viewOriginalPost": "원글 포스트 보기",
+    "participantsList": "참여자 목록",
+    "viewModeControls": "읽기 모드 설정",
+    "toggleHighlight": "강조 표시 토글",
+    "selectViewMode": "읽기 모드 선택",
+    "readPost": "포스트 읽기"
   },
   "sidebar": {
     "popularTopics": "인기 주제",

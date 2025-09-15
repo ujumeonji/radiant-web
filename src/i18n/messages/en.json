@@ -64,7 +64,15 @@
     "relatedPostsLoading": "Finding similar stories...",
     "readingTime": "{minutes}-minute read",
     "unknownAuthor": "Anonymous Writer",
-    "tech": "Tech"
+    "tech": "Tech",
+    "moreParticipants": "+{count} more",
+    "postAuthorInfo": "Post Author Information",
+    "viewOriginalPost": "View Original Post",
+    "participantsList": "Participants List",
+    "viewModeControls": "View Mode Controls",
+    "toggleHighlight": "Toggle Highlight",
+    "selectViewMode": "Select View Mode",
+    "readPost": "Read Post"
   },
   "sidebar": {
     "popularTopics": "Popular Topics",
