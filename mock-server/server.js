@@ -56,8 +56,21 @@ const mocks = {
 
   Post: () => ({
     id: casual.uuid,
-    title: casual.title,
+    title: () => "You can contribute to the translation efforts!",
     body: casual.sentences(casual.integer(3, 8)),
+    translatedTitle: () => "번역에 기여할 수 있습니다!",
+    originalSentences: () => [
+      "The community conducts the translation work for the React docs on each language-specific fork of react.dev.",
+      "Typical translation work involves directly translating a Markdown file and creating a pull request.",
+      "Click the 'contribute' link above to the GitHub repository for your language, and follow the instructions there to help with the translation effort.",
+      "If you want to start a new translation for your language, visit: translations.react.dev",
+    ],
+    translatedSentences: () => [
+      "커뮤니티는 react.dev의 각 언어별 포크에서 React 문서에 대한 번역 작업을 수행합니다.",
+      "일반적인 번역 작업에는 Markdown 파일을 직접 번역하고 풀 리퀘스트를 생성하는 작업이 포함됩니다.",
+      "사용하는 언어의 GitHub 저장소로 연결되는 '기여하기' 링크를 클릭하고, 해당 저장소의 안내에 따라 번역 작업에 참여하세요.",
+      "만약 새로운 언어의 번역을 시작하고 싶다면, translations.react.dev를 방문하세요.",
+    ],
     createdAt: casual.moment.subtract(casual.integer(0, 30), "days").format(),
     updatedAt: casual.moment.subtract(casual.integer(0, 5), "days").format(),
     likes: () => casual.integer(0, 1000),
