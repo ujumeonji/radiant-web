@@ -45,7 +45,7 @@
   "postDetail": {
     "originalAuthor": "원글 작성자",
     "viewOriginal": "원문 보러가기",
-    "originalPublishedDate": "원글 작성: {date}",
+    "originalPublishedDate": "작성일: {date}",
     "translationContributors": "번역에 참여한 분들",
     "translationDate": "번역 완료: {date}",
     "viewMode": "읽기 모드",

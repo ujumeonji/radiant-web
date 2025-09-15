@@ -45,7 +45,7 @@
   "postDetail": {
     "originalAuthor": "オリジナル作者",
     "viewOriginal": "オリジナルを読む",
-    "originalPublishedDate": "オリジナル公開日：{date}",
+    "originalPublishedDate": "作成日：{date}",
     "translationContributors": "翻訳チーム",
     "translationDate": "翻訳日：{date}",
     "viewMode": "読書モード",

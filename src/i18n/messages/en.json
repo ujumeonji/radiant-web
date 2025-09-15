@@ -45,7 +45,7 @@
   "postDetail": {
     "originalAuthor": "Original Writer",
     "viewOriginal": "Read the Original",
-    "originalPublishedDate": "Originally published: {date}",
+    "originalPublishedDate": "Published: {date}",
     "translationContributors": "Translation Team",
     "translationDate": "Translated on: {date}",
     "viewMode": "Reading Mode",

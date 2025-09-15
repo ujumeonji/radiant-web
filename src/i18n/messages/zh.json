@@ -45,7 +45,7 @@
   "postDetail": {
     "originalAuthor": "原创作者",
     "viewOriginal": "阅读原文",
-    "originalPublishedDate": "原文发布：{date}",
+    "originalPublishedDate": "作成日：{date}",
     "translationContributors": "翻译团队",
     "translationDate": "翻译于：{date}",
     "viewMode": "阅读模式",
