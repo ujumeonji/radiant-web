@@ -3,6 +3,7 @@ import {
   createHttpLink,
   from,
   InMemoryCache,
+  NormalizedCacheObject,
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
 
@@ -56,7 +57,20 @@ export const apolloClient = new ApolloClient({
   },
 });
 
-export function createApolloClient() {
+let serverClient: ApolloClient<NormalizedCacheObject> | null = null;
+
+export function getServerApolloClient(): ApolloClient<NormalizedCacheObject> {
+  if (!serverClient) {
+    serverClient = new ApolloClient({
+      ssrMode: true,
+      link: httpLink,
+      cache: new InMemoryCache(),
+    });
+  }
+  return serverClient;
+}
+
+export function createApolloClient(): ApolloClient<NormalizedCacheObject> {
   return new ApolloClient({
     ssrMode: typeof window === "undefined",
     link: from([authLink, httpLink]),
