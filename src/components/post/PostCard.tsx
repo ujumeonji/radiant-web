@@ -47,14 +47,14 @@ export default function PostCard({ post }: PostCardProps) {
               id={`post-title-${post.id}`}
               className="text-xl font-bold text-gray-900 line-clamp-2 group-hover:text-slate-700 transition-colors"
             >
-              {post.title}
+              {post.translatedTitle}
             </h2>
           </header>
 
-          {post.body && (
+          {post.translatedSentences && (
             <section>
               <p className="text-gray-600 line-clamp-3 leading-relaxed">
-                {post.body}
+                {post.translatedSentences.join(" ")}
               </p>
             </section>
           )}

@@ -5,6 +5,8 @@ query Posts($first: Int, $after: String) {
         id
         title
         body
+        translatedTitle
+        translatedSentences
         createdAt
         likes
         commentsCount
