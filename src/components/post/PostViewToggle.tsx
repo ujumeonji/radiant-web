@@ -33,10 +33,10 @@ export default function PostViewToggle({
             {t("viewMode")}
           </span>
           <button
-            className={`inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input hover:bg-accent hover:text-accent-foreground h-9 rounded-md px-3 text-xs ${
+            className={`inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input h-9 rounded-md px-3 text-xs ${
               showHighlight
-                ? "bg-blue-100 text-blue-800 border-blue-200"
-                : "bg-background"
+                ? "bg-gradient-to-br from-slate-700 to-slate-800 text-white border-slate-600 hover:from-slate-600 hover:to-slate-700 hover:text-white"
+                : "bg-background hover:bg-accent hover:text-accent-foreground"
             }`}
             onClick={() => setShowHighlight(!showHighlight)}
             aria-pressed={showHighlight}
