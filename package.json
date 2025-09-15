@@ -9,7 +9,9 @@
     "lint": "next lint",
     "codegen": "graphql-codegen --config codegen.ts",
     "codegen:watch": "graphql-codegen --config codegen.ts --watch",
-    "pretty": "prettier --write \"./**/*.{js,jsx,mjs,cjs,ts,tsx,json}\""
+    "pretty": "prettier --write \"./**/*.{js,jsx,mjs,cjs,ts,tsx,json}\"",
+    "mock-server": "node mock-server/server.js",
+    "dev:with-mock": "concurrently \"npm run mock-server\" \"npm run dev\""
   },
   "dependencies": {
     "@apollo/client": "^3.13.9",
@@ -25,16 +27,22 @@
     "tailwind-merge": "^3.3.1"
   },
   "devDependencies": {
+    "@apollo/server": "^5.0.0",
     "@eslint/eslintrc": "^3",
     "@graphql-codegen/cli": "^5.0.7",
     "@graphql-codegen/client-preset": "^4.8.3",
     "@graphql-codegen/introspection": "^4.0.3",
+    "@graphql-tools/mock": "^9.0.25",
+    "@graphql-tools/schema": "^10.0.25",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "casual-browserify": "1.5.19-2",
+    "concurrently": "^9.2.1",
     "eslint": "^9",
     "eslint-config-next": "15.4.6",
+    "glob": "^11.0.3",
     "graphql": "^16.11.0",
     "graphql-mocks": "^0.11.4",
     "prettier": "^3.6.2",
