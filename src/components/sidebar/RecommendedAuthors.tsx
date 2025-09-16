@@ -35,7 +35,7 @@ export default function RecommendedAuthors() {
           <Link
             key={author.id}
             href={{
-              pathname: "/authors/[username]",
+              pathname: "/users/[username]",
               params: { username: author.username },
             }}
             className="group block"

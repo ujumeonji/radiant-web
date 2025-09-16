@@ -42,6 +42,15 @@ const mocks = {
     name: casual.full_name,
     avatar: () =>
       `https://avatars.githubusercontent.com/u/${casual.integer(1, 999999)}?v=4`,
+    bio: () => casual.sentences(casual.integer(1, 3)),
+    location: () => `${casual.city}, ${casual.country}`,
+    website: () =>
+      casual.random > 0.5 ? `https://${casual.username}.dev` : null,
+    joinedDate: casual.moment
+      .subtract(casual.integer(1, 36), "months")
+      .format(),
+    postsCount: () => casual.integer(5, 100),
+    viewsCount: () => casual.integer(1000, 50000),
     followersCount: () => casual.integer(10, 5000),
     followingCount: () => casual.integer(5, 500),
     fields: () => {
@@ -110,6 +119,19 @@ const mocks = {
       new Array(casual.integer(5, 15)).fill(0).map(() => ({})),
     popularTopics: () =>
       new Array(casual.integer(3, 10)).fill(0).map(() => ({})),
+    user: () => ({}),
+    userPosts: () => ({
+      edges: new Array(casual.integer(3, 10)).fill(0).map(() => ({
+        node: {},
+        cursor: casual.uuid,
+      })),
+      pageInfo: {
+        hasNextPage: casual.coin_flip,
+        hasPreviousPage: casual.coin_flip,
+        startCursor: casual.uuid,
+        endCursor: casual.uuid,
+      },
+    }),
   }),
 };
 

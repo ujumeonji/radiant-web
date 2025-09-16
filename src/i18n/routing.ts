@@ -8,7 +8,7 @@ export const routing = defineRouting({
     "/": "/",
     "/posts/[id]": "/posts/[id]",
     "/topics/[slug]": "/topics/[slug]",
-    "/authors/[username]": "/authors/[username]",
+    "/users/[username]": "/users/[username]",
   } as const,
 });
 

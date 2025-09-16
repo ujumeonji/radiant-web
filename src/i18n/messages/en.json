@@ -101,5 +101,24 @@
     "searchFeatureDisabled": "Radiant search feature (Coming soon to shine)",
     "morePostsNavigation": "View more radiant stories",
     "errorOccurred": "The light dimmed momentarily"
+  },
+  "profile": {
+    "follow": "Follow",
+    "userStats": "User Statistics",
+    "translatedPosts": "Contributions",
+    "followers": "Followers",
+    "following": "Following",
+    "joined": "Joined",
+    "website": "Website",
+    "activity": "Activity",
+    "errorLoadingPosts": "Error loading posts",
+    "noPostsYet": "No posts yet",
+    "readingTime": "{minutes}-minute read",
+    "likes": "likes",
+    "views": "views",
+    "activityComingSoon": "Activity feed coming soon",
+    "followersComingSoon": "Followers list coming soon",
+    "followingComingSoon": "Following list coming soon",
+    "userNotFound": "User not found"
   }
 }

@@ -101,5 +101,24 @@
     "searchFeatureDisabled": "輝く検索機能（間もなく輝く予定）",
     "morePostsNavigation": "さらに輝く物語を見る",
     "errorOccurred": "光が一時的に曇りました"
+  },
+  "profile": {
+    "follow": "フォロー",
+    "userStats": "ユーザー統計",
+    "translatedPosts": "貢献記事",
+    "followers": "フォロワー",
+    "following": "フォロー中",
+    "joined": "参加",
+    "website": "ウェブサイト",
+    "activity": "アクティビティ",
+    "errorLoadingPosts": "記事の読み込みエラー",
+    "noPostsYet": "まだ記事がありません",
+    "readingTime": "{minutes}分読了",
+    "likes": "いいね",
+    "views": "閲覧",
+    "activityComingSoon": "アクティビティフィードは間もなく公開",
+    "followersComingSoon": "フォロワーリストは間もなく公開",
+    "followingComingSoon": "フォロー中リストは間もなく公開",
+    "userNotFound": "ユーザーが見つかりません"
   }
 }

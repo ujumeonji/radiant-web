@@ -101,5 +101,24 @@
     "searchFeatureDisabled": "璀璨搜索功能（即将闪耀）",
     "morePostsNavigation": "查看更多璀璨故事",
     "errorOccurred": "光芒暂时暗淡了"
+  },
+  "profile": {
+    "follow": "关注",
+    "userStats": "用户统计",
+    "translatedPosts": "贡献文章",
+    "followers": "粉丝",
+    "following": "关注中",
+    "joined": "加入",
+    "website": "网站",
+    "activity": "活动",
+    "errorLoadingPosts": "加载文章错误",
+    "noPostsYet": "还没有文章",
+    "readingTime": "{minutes}分钟阅读",
+    "likes": "赞",
+    "views": "浏览",
+    "activityComingSoon": "活动动态即将推出",
+    "followersComingSoon": "粉丝列表即将推出",
+    "followingComingSoon": "关注列表即将推出",
+    "userNotFound": "用户未找到"
   }
 }
