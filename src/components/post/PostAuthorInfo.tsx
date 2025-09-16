@@ -105,9 +105,6 @@ export default function PostAuthorInfo({ post }: PostAuthorInfoProps) {
             </svg>
             {t("translationContributors")}
           </h3>
-          <time className="text-xs text-blue-600" dateTime={post.createdAt}>
-            {t("translationDate", { date: formatDate(post.createdAt, locale) })}
-          </time>
         </header>
         <ul
           className="flex items-center space-x-[-8px]"
