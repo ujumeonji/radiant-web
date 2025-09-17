@@ -126,19 +126,19 @@ export default function PostList({ initialFirst = 10 }: PostListProps) {
 
   if (loading && !data) {
     return (
-      <main
+      <section
         className="flex-1 max-w-3xl"
         role="main"
         aria-label={t("post.postList")}
       >
         {loadingSkeleton}
-      </main>
+      </section>
     );
   }
 
   if (error) {
     return (
-      <main
+      <section
         className="flex-1 max-w-3xl"
         role="main"
         aria-label={t("post.postList")}
@@ -151,7 +151,7 @@ export default function PostList({ initialFirst = 10 }: PostListProps) {
           <h2 className="sr-only">{t("error.errorOccurred")}</h2>
           <p>{t("post.failedToLoad")}</p>
         </section>
-      </main>
+      </section>
     );
   }
 

@@ -24,27 +24,25 @@ export default function PostDetailPage({ post }: PostDetailPageProps) {
   const [showHighlight, setShowHighlight] = useState(false);
 
   return (
-    <main className="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
-      <div className="max-w-4xl mx-auto">
-        <PostDetailHeader post={post} />
+    <div className="flex-grow container mx-auto max-w-screen-lg px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+      <PostDetailHeader post={post} />
 
-        <PostAuthorInfo post={post} />
+      <PostAuthorInfo post={post} />
 
-        <PostViewToggle
-          viewMode={viewMode}
-          setViewMode={setViewMode}
-          showHighlight={showHighlight}
-          setShowHighlight={setShowHighlight}
-        />
+      <PostViewToggle
+        viewMode={viewMode}
+        setViewMode={setViewMode}
+        showHighlight={showHighlight}
+        setShowHighlight={setShowHighlight}
+      />
 
-        <PostContent
-          post={post}
-          viewMode={viewMode}
-          showHighlight={showHighlight}
-        />
+      <PostContent
+        post={post}
+        viewMode={viewMode}
+        showHighlight={showHighlight}
+      />
 
-        <RelatedPosts currentPostId={post.id} />
-      </div>
-    </main>
+      <RelatedPosts currentPostId={post.id} />
+    </div>
   );
 }

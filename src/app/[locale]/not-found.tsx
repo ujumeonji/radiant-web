@@ -9,7 +9,7 @@ export default function NotFoundPage() {
   const t = useTranslations();
 
   return (
-    <main role="main" aria-labelledby="error-title" className="flex-1">
+    <div role="main" aria-labelledby="error-title" className="flex-1">
       <Container>
         <section className="py-16">
           <div className="max-w-2xl mx-auto text-center">
@@ -120,6 +120,6 @@ export default function NotFoundPage() {
           </div>
         </section>
       </Container>
-    </main>
+    </div>
   );
 }

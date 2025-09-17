@@ -85,7 +85,7 @@ export default function UserProfilePage() {
 
   if (userLoading) {
     return (
-      <main className="min-h-screen bg-white">
+      <div className="min-h-screen bg-white">
         <div className="max-w-4xl mx-auto px-4 py-8">
           <div className="animate-pulse">
             <div className="text-center mb-16">
@@ -96,33 +96,33 @@ export default function UserProfilePage() {
             </div>
           </div>
         </div>
-      </main>
+      </div>
     );
   }
 
   if (userError || !userData?.user) {
     return (
-      <main className="min-h-screen bg-white">
+      <div className="min-h-screen bg-white">
         <div className="max-w-4xl mx-auto px-4 py-8 text-center">
           <h1 className="text-2xl font-bold text-gray-900 mb-4">
             {t("error.pageNotFound")}
           </h1>
           <p className="text-gray-600">{t("profile.userNotFound")}</p>
         </div>
-      </main>
+      </div>
     );
   }
 
   if (userData.user.__typename === "UserNotFoundError") {
     return (
-      <main className="min-h-screen bg-white">
+      <div className="min-h-screen bg-white">
         <div className="max-w-4xl mx-auto px-4 py-8 text-center">
           <h1 className="text-2xl font-bold text-gray-900 mb-4">
             {t("error.pageNotFound")}
           </h1>
           <p className="text-gray-600">{t("profile.userNotFound")}</p>
         </div>
-      </main>
+      </div>
     );
   }
 
