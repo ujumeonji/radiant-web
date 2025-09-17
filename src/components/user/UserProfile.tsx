@@ -349,7 +349,7 @@ export default function UserProfile({
                       </div>
                       <div className="flex items-center gap-4">
                         <span>
-                          {post.likes} {t("profile.likes")}
+                          {post.likesCount} {t("profile.likes")}
                         </span>
                         <span>·</span>
                         <span>

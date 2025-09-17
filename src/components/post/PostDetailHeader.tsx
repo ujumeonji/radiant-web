@@ -2,8 +2,13 @@
 
 import { GetPostQuery } from "@/graphql/generated/graphql";
 
+type PostType = Extract<
+  NonNullable<GetPostQuery["post"]>,
+  { __typename?: "Post" }
+>;
+
 interface PostDetailHeaderProps {
-  post: NonNullable<GetPostQuery["post"]>;
+  post: PostType;
 }
 
 export default function PostDetailHeader({ post }: PostDetailHeaderProps) {

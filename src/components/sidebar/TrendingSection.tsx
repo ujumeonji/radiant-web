@@ -11,7 +11,7 @@ import { MessageCircle, ThumbsUp, TrendingUp } from "lucide-react";
 export default function TrendingSection() {
   const t = useTranslations();
   const queryResult = useQuery(TrendingPostsDocument, {
-    variables: { limit: 5 },
+    variables: { first: 5 },
   });
 
   const {
@@ -19,7 +19,9 @@ export default function TrendingSection() {
     isLoading,
     hasError,
     isEmpty,
-  } = useQueryStates(queryResult, (data) => data.trendingPosts);
+  } = useQueryStates(queryResult, (data) =>
+    data.trendingPosts.edges.map((edge) => edge.node),
+  );
 
   const title = (
     <div className="flex items-center gap-2">
@@ -64,7 +66,7 @@ export default function TrendingSection() {
                 <div className="flex items-center gap-4 text-xs text-gray-500">
                   <span className="flex items-center gap-1">
                     <ThumbsUp className="w-3 h-3" />
-                    {post.likes}
+                    {post.likesCount}
                   </span>
                   <span className="flex items-center gap-1">
                     <MessageCircle className="w-3 h-3" />

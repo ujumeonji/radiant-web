@@ -90,7 +90,7 @@ export default function PostCard({ post }: PostCardProps) {
         >
           <div
             className="flex items-center space-x-1"
-            aria-label={t("post.likesCount", { count: post.likes })}
+            aria-label={t("post.likesCount", { count: post.likesCount })}
           >
             <svg
               className="w-4 h-4 text-red-500"
@@ -104,7 +104,7 @@ export default function PostCard({ post }: PostCardProps) {
                 clipRule="evenodd"
               />
             </svg>
-            <span>{post.likes}</span>
+            <span>{post.likesCount}</span>
           </div>
 
           <div

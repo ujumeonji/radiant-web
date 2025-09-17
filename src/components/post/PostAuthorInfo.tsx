@@ -6,8 +6,13 @@ import Image from "next/image";
 import { formatDate } from "@/lib/date-format";
 import { useLocale } from "next-intl";
 
+type PostType = Extract<
+  NonNullable<GetPostQuery["post"]>,
+  { __typename?: "Post" }
+>;
+
 interface PostAuthorInfoProps {
-  post: NonNullable<GetPostQuery["post"]>;
+  post: PostType;
 }
 
 export default function PostAuthorInfo({ post }: PostAuthorInfoProps) {
@@ -59,7 +64,7 @@ export default function PostAuthorInfo({ post }: PostAuthorInfoProps) {
             <Image
               className="aspect-square h-full w-full"
               alt={`${post.author?.name || t("unknownAuthor")} avatar`}
-              src={post.author?.avatar || "/react-logo.png"}
+              src={post.author?.avatarUrl || "/react-logo.png"}
               width={40}
               height={40}
             />
@@ -111,7 +116,7 @@ export default function PostAuthorInfo({ post }: PostAuthorInfoProps) {
           role="list"
           aria-label={t("participantsList")}
         >
-          {post.participants.slice(0, 4).map((participant) => (
+          {post.participants.edges.slice(0, 4).map(({ node: participant }) => (
             <li
               key={participant.id}
               className="relative flex shrink-0 overflow-hidden rounded-full h-8 w-8 border-2 border-white hover:z-10 transition-transform hover:scale-110"
@@ -119,24 +124,24 @@ export default function PostAuthorInfo({ post }: PostAuthorInfoProps) {
               <Image
                 className="aspect-square h-full w-full"
                 alt={`${participant.name} avatar`}
-                src={participant.avatar || "/react-logo.png"}
+                src={participant.avatarUrl || "/react-logo.png"}
                 width={32}
                 height={32}
                 title={participant.name}
               />
             </li>
           ))}
-          {post.participants.length > 4 && (
+          {post.participants.edges.length > 4 && (
             <li
               className="relative flex shrink-0 overflow-hidden rounded-full h-8 w-8 border-2 border-white bg-gray-200 text-xs font-medium text-gray-600 items-center justify-center"
               title={t("moreParticipants", {
-                count: post.participants.length - 4,
+                count: post.participants.edges.length - 4,
               })}
               aria-label={t("moreParticipants", {
-                count: post.participants.length - 4,
+                count: post.participants.edges.length - 4,
               })}
             >
-              +{post.participants.length - 4}
+              +{post.participants.edges.length - 4}
             </li>
           )}
         </ul>

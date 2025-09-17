@@ -5,8 +5,13 @@ import { useTranslations } from "next-intl";
 
 type ViewMode = "korean" | "original" | "both";
 
+type PostType = Extract<
+  NonNullable<GetPostQuery["post"]>,
+  { __typename?: "Post" }
+>;
+
 interface PostContentProps {
-  post: NonNullable<GetPostQuery["post"]>;
+  post: PostType;
   viewMode: ViewMode;
   showHighlight: boolean;
 }

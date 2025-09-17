@@ -3,6 +3,7 @@ import { Metadata } from "next";
 import PostDetailPage from "@/components/post/PostDetailPage";
 import { getServerApolloClient } from "@/graphql/client";
 import { GetPostDocument, GetPostQuery } from "@/graphql/generated/graphql";
+import { getTranslations } from "next-intl/server";
 
 interface Props {
   params: Promise<{
@@ -35,24 +36,31 @@ async function getPost(id: string): Promise<GetPostQuery | null> {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { id } = await params;
+  const { id, locale } = await params;
+  const t = await getTranslations({ locale, namespace: "postDetail" });
 
   try {
     const data = await getPost(id);
 
     if (!data?.post) {
       return {
-        title: "포스트를 찾을 수 없습니다",
+        title: t("postNotFound"),
+      };
+    }
+
+    if (data.post.__typename === "Post") {
+      return {
+        title: data.post.title,
+        description: data.post.body?.substring(0, 160) || "",
       };
     }
 
     return {
-      title: data.post.title,
-      description: data.post.body?.substring(0, 160) || "",
+      title: t("postNotFound"),
     };
   } catch {
     return {
-      title: "포스트를 찾을 수 없습니다",
+      title: t("postNotFound"),
     };
   }
 }
@@ -63,7 +71,7 @@ export default async function Page({ params }: Props) {
   try {
     const data = await getPost(id);
 
-    if (!data?.post) {
+    if (!data?.post || data.post.__typename !== "Post") {
       notFound();
     }
 

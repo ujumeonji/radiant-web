@@ -12,7 +12,7 @@ import Image from "next/image";
 export default function RecommendedAuthors() {
   const t = useTranslations();
   const queryResult = useQuery(RecommendedAuthorsDocument, {
-    variables: { limit: 3 },
+    variables: { first: 3 },
   });
 
   const {
@@ -20,7 +20,9 @@ export default function RecommendedAuthors() {
     isLoading,
     hasError,
     isEmpty,
-  } = useQueryStates(queryResult, (data) => data.recommendedAuthors);
+  } = useQueryStates(queryResult, (data) =>
+    data.recommendedAuthors.edges.map((edge) => edge.node),
+  );
 
   return (
     <QueryWrapper
@@ -41,9 +43,9 @@ export default function RecommendedAuthors() {
             className="group block"
           >
             <div className="flex items-center gap-3 py-2 hover:bg-gray-50 transition-colors rounded">
-              {author.avatar ? (
+              {author.avatarUrl ? (
                 <Image
-                  src={author.avatar}
+                  src={author.avatarUrl}
                   alt={author.name}
                   width={40}
                   height={40}

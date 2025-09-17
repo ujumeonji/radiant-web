@@ -10,7 +10,7 @@ import { useTranslations } from "next-intl";
 export default function PopularTopics() {
   const t = useTranslations();
   const queryResult = useQuery(PopularTopicsDocument, {
-    variables: { limit: 5 },
+    variables: { first: 5 },
   });
 
   const {
@@ -18,7 +18,9 @@ export default function PopularTopics() {
     isLoading,
     hasError,
     isEmpty,
-  } = useQueryStates(queryResult, (data) => data.popularTopics);
+  } = useQueryStates(queryResult, (data) =>
+    data.popularTopics.edges.map((edge) => edge.node),
+  );
 
   return (
     <QueryWrapper
@@ -40,7 +42,7 @@ export default function PopularTopics() {
                 {topic.name}
               </span>
               <span className="text-xs text-gray-500">
-                {topic.postCount} posts
+                {topic.postsCount} posts
               </span>
             </div>
           </Link>

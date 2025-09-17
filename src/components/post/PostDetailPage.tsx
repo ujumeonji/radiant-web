@@ -8,8 +8,13 @@ import PostViewToggle from "./PostViewToggle";
 import PostContent from "./PostContent";
 import RelatedPosts from "./RelatedPosts";
 
+type PostType = Extract<
+  NonNullable<GetPostQuery["post"]>,
+  { __typename?: "Post" }
+>;
+
 interface PostDetailPageProps {
-  post: NonNullable<GetPostQuery["post"]>;
+  post: PostType;
 }
 
 type ViewMode = "korean" | "original" | "both";
