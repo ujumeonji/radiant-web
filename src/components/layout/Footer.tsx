@@ -11,7 +11,7 @@ export default function Footer() {
   const t = useTranslations();
 
   return (
-    <footer className="bg-slate-900 text-slate-200 mt-20">
+    <footer className="bg-slate-900 text-slate-200">
       <BrandAccent />
       <Container>
         <div className="py-12">
