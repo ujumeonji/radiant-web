@@ -1,11 +1,20 @@
-query RecommendedAuthors($limit: Int = 5) {
-  recommendedAuthors(limit: $limit) {
-    id
-    username
-    name
-    avatar
-    followersCount
-    followingCount
-    fields
+query RecommendedAuthors($first: Int = 5, $after: String) {
+  recommendedAuthors(first: $first, after: $after) {
+    edges {
+      node {
+        id
+        username
+        name
+        avatarUrl
+        followersCount
+        followingCount
+        professionalFields
+      }
+      cursor
+    }
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
   }
 }

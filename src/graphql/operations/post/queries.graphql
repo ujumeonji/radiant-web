@@ -8,14 +8,14 @@ query Posts($first: Int, $after: String) {
         translatedTitle
         translatedSentences
         createdAt
-        likes
+        likesCount
         commentsCount
         thumbnailUrl
         author {
           id
           name
           username
-          avatar
+          avatarUrl
         }
       }
       cursor
@@ -29,32 +29,48 @@ query Posts($first: Int, $after: String) {
 
 query GetPost($id: ID!) {
   post(id: $id) {
-    id
-    title
-    translatedTitle
-    translatedSentences
-    originalSentences
-    body
-    createdAt
-    updatedAt
-    likes
-    commentsCount
-    thumbnailUrl
-    author {
+    ... on Post {
       id
-      name
-      username
-      avatar
-      followersCount
-      followingCount
-      fields
+      title
+      translatedTitle
+      translatedSentences
+      originalSentences
+      body
+      createdAt
+      updatedAt
+      likesCount
+      commentsCount
+      thumbnailUrl
+      author {
+        id
+        name
+        username
+        avatarUrl
+        followersCount
+        followingCount
+        professionalFields
+      }
+      participants(first: 10) {
+        edges {
+          node {
+            id
+            name
+            username
+            avatarUrl
+            professionalFields
+          }
+        }
+      }
     }
-    participants(limit: 10) {
-      id
-      name
-      username
-      avatar
-      fields
+    ... on PostNotFoundError {
+      message
+      code
+      postId
+    }
+    ... on UnauthorizedError {
+      message
+      code
+      requiredPermission
     }
   }
 }
