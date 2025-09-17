@@ -55,7 +55,7 @@ export default function UserProfile({
   const joinedDate = formatDate(user.joinedAt, locale);
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8">
+    <div className="container mx-auto max-w-screen-lg px-4 sm:px-6 lg:px-8 py-8">
       {/* Profile Header */}
       <header className="text-center mb-12">
         <figure className="mb-6">
