@@ -6,6 +6,9 @@ export const routing = defineRouting({
   defaultLocale: "ko",
   pathnames: {
     "/": "/",
+    "/signin": "/signin",
+    "/signup": "/signup",
+    "/forgot-password": "/forgot-password",
     "/posts/[id]": "/posts/[id]",
     "/topics/[slug]": "/topics/[slug]",
     "/users/[username]": "/users/[username]",

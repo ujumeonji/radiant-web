@@ -101,6 +101,23 @@
     "morePostsNavigation": "더 많은 빛나는 이야기 보기",
     "errorOccurred": "잠시 빛이 흐려졌어요"
   },
+  "auth": {
+    "login": "다시 만나서 반가워요",
+    "loginDescription": "전 세계의 인사이트를 한국어로 만나보세요",
+    "continueWithGoogle": "Google로 로그인",
+    "continueWithGitHub": "GitHub로 로그인",
+    "orLoginWithEmail": "또는 이메일로 로그인",
+    "email": "이메일",
+    "emailPlaceholder": "example@email.com",
+    "password": "비밀번호",
+    "passwordPlaceholder": "비밀번호를 입력해 주세요",
+    "rememberMe": "로그인 상태 유지",
+    "forgotPassword": "비밀번호를 잊으셨나요?",
+    "loginButton": "로그인",
+    "newToRadiant": "Radiant가 처음이신가요?",
+    "signUpDescription": "전 세계 커뮤니티와 함께 성장하고 지식을 나누어보세요",
+    "signUpButton": "회원가입"
+  },
   "profile": {
     "follow": "팔로우",
     "userStats": "사용자 통계",

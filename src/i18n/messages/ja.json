@@ -101,6 +101,23 @@
     "morePostsNavigation": "さらに輝く物語を見る",
     "errorOccurred": "光が一時的に曇りました"
   },
+  "auth": {
+    "login": "お帰りなさい",
+    "loginDescription": "日本語でグローバルな情報を発見しよう",
+    "continueWithGoogle": "Googleでログイン",
+    "continueWithGitHub": "GitHubでログイン",
+    "orLoginWithEmail": "またはメールでログイン",
+    "email": "メール",
+    "emailPlaceholder": "メールアドレスを入力",
+    "password": "パスワード",
+    "passwordPlaceholder": "パスワードを入力",
+    "rememberMe": "ログイン状態を保持",
+    "forgotPassword": "パスワードをお忘れですか？",
+    "loginButton": "ログイン",
+    "newToRadiant": "Radiantが初めてですか？",
+    "signUpDescription": "グローバルコミュニティに参加して知識を共有しましょう",
+    "signUpButton": "アカウント作成"
+  },
   "profile": {
     "follow": "フォロー",
     "userStats": "ユーザー統計",

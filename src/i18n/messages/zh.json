@@ -101,6 +101,23 @@
     "morePostsNavigation": "查看更多璀璨故事",
     "errorOccurred": "光芒暂时暗淡了"
   },
+  "auth": {
+    "login": "欢迎回来",
+    "loginDescription": "用中文发现全球洞察",
+    "continueWithGoogle": "使用 Google 登录",
+    "continueWithGitHub": "使用 GitHub 登录",
+    "orLoginWithEmail": "或使用邮箱登录",
+    "email": "邮箱",
+    "emailPlaceholder": "请输入邮箱",
+    "password": "密码",
+    "passwordPlaceholder": "请输入密码",
+    "rememberMe": "保持登录状态",
+    "forgotPassword": "忘记密码？",
+    "loginButton": "登录",
+    "newToRadiant": "初次使用 Radiant？",
+    "signUpDescription": "加入全球社区，共同分享知识",
+    "signUpButton": "创建账户"
+  },
   "profile": {
     "follow": "关注",
     "userStats": "用户统计",

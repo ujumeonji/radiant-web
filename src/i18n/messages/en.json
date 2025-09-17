@@ -101,6 +101,23 @@
     "morePostsNavigation": "View more radiant stories",
     "errorOccurred": "The light dimmed momentarily"
   },
+  "auth": {
+    "login": "Welcome back",
+    "loginDescription": "Discover global insights in your language",
+    "continueWithGoogle": "Continue with Google",
+    "continueWithGitHub": "Continue with GitHub",
+    "orLoginWithEmail": "Or sign in with email",
+    "email": "Email",
+    "emailPlaceholder": "Enter your email",
+    "password": "Password",
+    "passwordPlaceholder": "Enter your password",
+    "rememberMe": "Keep me signed in",
+    "forgotPassword": "Forgot your password?",
+    "loginButton": "Sign In",
+    "newToRadiant": "New to Radiant?",
+    "signUpDescription": "Join our global community and share knowledge together",
+    "signUpButton": "Create Account"
+  },
   "profile": {
     "follow": "Follow",
     "userStats": "User Statistics",
