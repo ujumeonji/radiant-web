@@ -10,19 +10,26 @@ import { PostEdge } from "@/graphql/generated/graphql";
 const GET_USER_QUERY = gql`
   query GetUser($username: String!) {
     user(username: $username) {
-      id
-      username
-      name
-      avatar
-      bio
-      location
-      website
-      joinedDate
-      postsCount
-      viewsCount
-      followersCount
-      followingCount
-      fields
+      ... on User {
+        id
+        username
+        name
+        avatarUrl
+        bio
+        location
+        websiteUrl
+        joinedAt
+        postsCount
+        viewsCount
+        followersCount
+        followingCount
+        professionalFields
+      }
+      ... on UserNotFoundError {
+        message
+        code
+        username
+      }
     }
   }
 `;
@@ -39,7 +46,7 @@ const GET_USER_POSTS_QUERY = gql`
           translatedSentences
           createdAt
           updatedAt
-          likes
+          likesCount
           commentsCount
           thumbnailUrl
         }
@@ -94,6 +101,19 @@ export default function UserProfilePage() {
   }
 
   if (userError || !userData?.user) {
+    return (
+      <main className="min-h-screen bg-white">
+        <div className="max-w-4xl mx-auto px-4 py-8 text-center">
+          <h1 className="text-2xl font-bold text-gray-900 mb-4">
+            {t("error.pageNotFound")}
+          </h1>
+          <p className="text-gray-600">{t("profile.userNotFound")}</p>
+        </div>
+      </main>
+    );
+  }
+
+  if (userData.user.__typename === "UserNotFoundError") {
     return (
       <main className="min-h-screen bg-white">
         <div className="max-w-4xl mx-auto px-4 py-8 text-center">
