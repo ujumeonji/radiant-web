@@ -75,7 +75,7 @@ export default function PostContent({ post, viewMode }: PostContentProps) {
 
     return (
       <div className="space-y-6">
-        {sentences.map((sentence, idx) => (
+        {sentences.map((sentence) => (
           <div
             key={`${sentence.type}-${sentence.index}`}
             className="group relative"

@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
-import Image from "next/image";
 
 export default function LoginPage() {
   const t = useTranslations("auth");

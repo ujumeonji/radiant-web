@@ -27,7 +27,7 @@ interface UserProfileProps {
   user: User;
   posts: Post[];
   isLoadingPosts: boolean;
-  postsError?: any;
+  postsError?: Error;
 }
 
 export default function UserProfile({
