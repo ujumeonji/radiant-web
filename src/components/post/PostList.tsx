@@ -20,10 +20,13 @@ export default function PostList({ initialFirst = 10 }: PostListProps) {
   const { data, loading, error, fetchMore } = useQuery(PostsDocument, {
     variables: { first: initialFirst },
     notifyOnNetworkStatusChange: true,
-    onCompleted: (data) => {
-      setHasMore(data.posts.pageInfo.hasNextPage);
-    },
   });
+
+  useEffect(() => {
+    if (data?.posts.pageInfo.hasNextPage !== undefined) {
+      setHasMore(data.posts.pageInfo.hasNextPage);
+    }
+  }, [data?.posts.pageInfo.hasNextPage]);
 
   const loadMore = useCallback(async () => {
     if (!hasMore || loading || isLoadingMore) return;
