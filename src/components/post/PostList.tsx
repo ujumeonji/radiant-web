@@ -126,11 +126,7 @@ export default function PostList({ initialFirst = 10 }: PostListProps) {
 
   if (loading && !data) {
     return (
-      <section
-        className="flex-1 max-w-3xl"
-        role="main"
-        aria-label={t("post.postList")}
-      >
+      <section className="flex-1" role="main" aria-label={t("post.postList")}>
         {loadingSkeleton}
       </section>
     );
@@ -138,11 +134,7 @@ export default function PostList({ initialFirst = 10 }: PostListProps) {
 
   if (error) {
     return (
-      <section
-        className="flex-1 max-w-3xl"
-        role="main"
-        aria-label={t("post.postList")}
-      >
+      <section className="flex-1" role="main" aria-label={t("post.postList")}>
         <section
           className="text-center py-8 text-gray-500"
           role="alert"
@@ -158,11 +150,7 @@ export default function PostList({ initialFirst = 10 }: PostListProps) {
   const posts = data?.posts.edges.map((edge) => edge.node) || [];
 
   return (
-    <main
-      className="flex-1 max-w-3xl"
-      role="main"
-      aria-label={t("post.postList")}
-    >
+    <main className="flex-1" role="main" aria-label={t("post.postList")}>
       <section
         className="space-y-6"
         aria-label={t("post.totalPosts", { count: posts.length })}
