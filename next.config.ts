@@ -8,13 +8,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https" as const,
-        hostname: "picsum.photos",
-        port: "",
-        pathname: "/**",
-      },
-      {
-        protocol: "https" as const,
-        hostname: "avatars.githubusercontent.com",
+        hostname: "cdn.radiant.ink",
         port: "",
         pathname: "/**",
       },
