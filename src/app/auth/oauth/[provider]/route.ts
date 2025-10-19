@@ -1,12 +1,15 @@
-import { NextRequest, NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
+import { NextResponse } from "next/server";
 
 const SUPPORTED_PROVIDERS = new Set(["google", "github"]);
 
-export function GET(
-  req: NextRequest,
-  { params }: { params: { provider: string } },
-) {
-  const provider = params.provider?.toLowerCase();
+type RouteParams = {
+  params: Promise<{ provider: string }>;
+};
+
+export async function GET(req: NextRequest, { params }: RouteParams) {
+  const { provider: providerParam } = await params;
+  const provider = providerParam?.toLowerCase();
 
   if (!provider || !SUPPORTED_PROVIDERS.has(provider)) {
     return NextResponse.json(
