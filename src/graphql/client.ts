@@ -6,20 +6,20 @@ import {
   NormalizedCacheObject,
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
+import { getValidAccessToken } from "@/lib/auth/token-storage";
 
 const httpLink = createHttpLink({
   uri: process.env.NEXT_PUBLIC_GRAPHQL_URL || "http://localhost:4000/graphql",
 });
 
 const authLink = setContext((_, { headers }) => {
-  let token = "";
-  if (typeof window !== "undefined") {
-    token = localStorage.getItem("token") ?? "";
-  }
+  const accessToken =
+    typeof window !== "undefined" ? getValidAccessToken() : null;
+
   return {
     headers: {
       ...headers,
-      authorization: token ? `Bearer ${token}` : "",
+      ...(accessToken ? { authorization: `Bearer ${accessToken}` } : {}),
     },
   };
 });

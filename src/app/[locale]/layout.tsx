@@ -1,11 +1,12 @@
-import Footer from "@/components/layout/Footer";
-import Header from "@/components/layout/Header";
-import { GraphQLProvider } from "@/lib/apollo-provider";
 import type { Metadata } from "next";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { notFound } from "next/navigation";
 import "../globals.css";
+import AuthInitializer from "@/components/auth/AuthInitializer";
+import Footer from "@/components/layout/Footer";
+import Header from "@/components/layout/Header";
+import { GraphQLProvider } from "@/lib/apollo-provider";
 
 export async function generateMetadata({
   params,
@@ -43,6 +44,7 @@ export default async function RootLayout({
   return (
     <NextIntlClientProvider messages={messages}>
       <GraphQLProvider>
+        <AuthInitializer />
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />

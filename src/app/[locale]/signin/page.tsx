@@ -1,11 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
 
 export default function LoginPage() {
   const t = useTranslations("auth");
+  const locale = useLocale();
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -18,8 +19,17 @@ export default function LoginPage() {
   };
 
   const handleOAuthLogin = (provider: "google" | "github") => {
-    // TODO: Implement OAuth signin
-    console.log(`OAuth login with ${provider}`);
+    if (typeof window === "undefined") {
+      return;
+    }
+
+    const origin = window.location.origin;
+    const destination = new URL(`/auth/oauth/${provider}`, origin);
+
+    destination.searchParams.set("redirectUri", `${origin}/${locale}/signin`);
+    destination.searchParams.set("locale", locale);
+
+    window.location.href = destination.toString();
   };
 
   return (
