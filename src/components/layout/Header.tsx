@@ -77,16 +77,21 @@ export default function Header() {
 
             {/* Dropdown Menu */}
             {isMenuOpen && (
-              <div className="absolute right-0 top-full mt-0 w-48 bg-white border border-gray-200 z-50">
-                <nav className="py-2">
+              <div
+                role="menu"
+                aria-orientation="vertical"
+                className="absolute right-0 top-full mt-0 w-48 bg-white border border-gray-200 z-50"
+              >
+                <div className="py-2">
                   <Link
                     href="/signin"
+                    role="menuitem"
                     className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     {t("header.login")}
                   </Link>
-                </nav>
+                </div>
               </div>
             )}
           </div>
