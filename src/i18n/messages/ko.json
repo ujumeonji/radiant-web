@@ -119,7 +119,8 @@
     "newToRadiant": "Radiant가 처음이신가요?",
     "signUpDescription": "전 세계 커뮤니티와 함께 성장하고 지식을 나누어보세요",
     "signUpButton": "회원가입",
-    "emailLoginDisabled": "이메일 로그인은 현재 사용할 수 없습니다. Google 또는 GitHub 계정으로 로그인해 주세요."
+    "emailLoginDisabled": "이메일 로그인은 현재 사용할 수 없습니다. Google 또는 GitHub 계정으로 로그인해 주세요.",
+    "signUpDisabled": "회원가입은 현재 사용할 수 없습니다. Google 또는 GitHub 계정으로 로그인해 주세요."
   },
   "profile": {
     "follow": "팔로우",

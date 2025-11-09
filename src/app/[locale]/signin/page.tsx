@@ -258,7 +258,7 @@ export default function LoginPage() {
         </div>
 
         {/* Sign Up Section */}
-        <div className="mt-4 p-4 bg-white rounded-lg border border-gray-100">
+        <div className="mt-4 p-4 bg-white rounded-lg border border-gray-100 relative group">
           <div className="text-center">
             <h3 className="font-medium text-gray-900 mb-2">
               {t("newToRadiant")}
@@ -266,12 +266,16 @@ export default function LoginPage() {
             <p className="text-sm text-gray-600 mb-3">
               {t("signUpDescription")}
             </p>
-            <Link
-              href="/signup"
-              className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border hover:text-accent-foreground h-10 px-4 py-2 bg-white border-gray-200 hover:bg-gray-50"
-            >
+            <span className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors h-10 px-4 py-2 bg-gray-100 border border-gray-200 text-gray-400 cursor-not-allowed opacity-50">
               {t("signUpButton")}
-            </Link>
+            </span>
+          </div>
+
+          {/* Tooltip */}
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+            <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-gray-900 text-white text-sm px-4 py-2 rounded-md shadow-lg max-w-xs text-center z-10">
+              {t("signUpDisabled")}
+            </div>
           </div>
         </div>
       </div>
