@@ -7,11 +7,31 @@ import Logo from "@/components/ui/Logo";
 import { Link } from "@/i18n/routing";
 import { Menu, X } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const menuContainerRef = useRef<HTMLDivElement>(null);
   const t = useTranslations();
+
+  useEffect(() => {
+    const handleOutsideClick = (event: MouseEvent) => {
+      if (
+        menuContainerRef.current &&
+        !menuContainerRef.current.contains(event.target as Node)
+      ) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    if (isMenuOpen) {
+      document.addEventListener("mousedown", handleOutsideClick);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    };
+  }, [isMenuOpen]);
 
   return (
     <header className="bg-white/80 backdrop-blur-sm sticky top-0 z-50 border-b">
@@ -35,7 +55,7 @@ export default function Header() {
             </ul>
           </nav>
 
-          <div className="flex items-center relative">
+          <div ref={menuContainerRef} className="flex items-center relative">
             <div className="px-4">
               <LanguageSelector />
             </div>
