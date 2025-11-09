@@ -7,11 +7,31 @@ import Logo from "@/components/ui/Logo";
 import { Link } from "@/i18n/routing";
 import { Menu, X } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const menuContainerRef = useRef<HTMLDivElement>(null);
   const t = useTranslations();
+
+  useEffect(() => {
+    const handleOutsideClick = (event: MouseEvent) => {
+      if (
+        menuContainerRef.current &&
+        !menuContainerRef.current.contains(event.target as Node)
+      ) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    if (isMenuOpen) {
+      document.addEventListener("mousedown", handleOutsideClick);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    };
+  }, [isMenuOpen]);
 
   return (
     <header className="bg-white/80 backdrop-blur-sm sticky top-0 z-50 border-b">
@@ -35,7 +55,7 @@ export default function Header() {
             </ul>
           </nav>
 
-          <div className="flex items-center">
+          <div ref={menuContainerRef} className="flex items-center relative">
             <div className="px-4">
               <LanguageSelector />
             </div>
@@ -54,6 +74,26 @@ export default function Header() {
                 <Menu className="h-6 w-6 text-gray-800" />
               )}
             </button>
+
+            {/* Dropdown Menu */}
+            {isMenuOpen && (
+              <div
+                role="menu"
+                aria-orientation="vertical"
+                className="absolute right-0 top-full mt-0 w-48 bg-white border border-gray-200 z-50"
+              >
+                <div className="py-2">
+                  <Link
+                    href="/signin"
+                    role="menuitem"
+                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    {t("header.login")}
+                  </Link>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </Container>
