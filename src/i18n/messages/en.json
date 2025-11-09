@@ -118,7 +118,8 @@
     "loginButton": "Sign In",
     "newToRadiant": "New to Radiant?",
     "signUpDescription": "Join our global community and share knowledge together",
-    "signUpButton": "Create Account"
+    "signUpButton": "Create Account",
+    "emailLoginDisabled": "Email login is currently unavailable. Please sign in with Google or GitHub."
   },
   "profile": {
     "follow": "Follow",

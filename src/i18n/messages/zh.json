@@ -118,7 +118,8 @@
     "loginButton": "登录",
     "newToRadiant": "初次使用 Radiant？",
     "signUpDescription": "加入全球社区，共同分享知识",
-    "signUpButton": "创建账户"
+    "signUpButton": "创建账户",
+    "emailLoginDisabled": "电子邮件登录当前不可用。请使用 Google 或 GitHub 登录。"
   },
   "profile": {
     "follow": "关注",
