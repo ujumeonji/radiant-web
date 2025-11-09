@@ -35,7 +35,7 @@ export default function Header() {
             </ul>
           </nav>
 
-          <div className="flex items-center">
+          <div className="flex items-center relative">
             <div className="px-4">
               <LanguageSelector />
             </div>
@@ -54,6 +54,21 @@ export default function Header() {
                 <Menu className="h-6 w-6 text-gray-800" />
               )}
             </button>
+
+            {/* Dropdown Menu */}
+            {isMenuOpen && (
+              <div className="absolute right-0 top-full mt-0 w-48 bg-white border border-gray-200 z-50">
+                <nav className="py-2">
+                  <Link
+                    href="/signin"
+                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    {t("header.login")}
+                  </Link>
+                </nav>
+              </div>
+            )}
           </div>
         </div>
       </Container>
