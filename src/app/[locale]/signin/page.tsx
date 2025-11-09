@@ -106,8 +106,9 @@ export default function LoginPage() {
 
         {/* Email Form */}
         <div className="relative group">
-          <form className="space-y-4" onSubmit={handleSubmit}>
-            <div className="space-y-2">
+          <form onSubmit={handleSubmit}>
+            <fieldset disabled className="space-y-4">
+              <div className="space-y-2">
               <label
                 className="peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-sm font-medium text-gray-700"
                 htmlFor="email"
@@ -136,7 +137,6 @@ export default function LoginPage() {
                   id="email"
                   placeholder={t("emailPlaceholder")}
                   required
-                  disabled
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
@@ -172,7 +172,6 @@ export default function LoginPage() {
                   id="password"
                   placeholder={t("passwordPlaceholder")}
                   required
-                  disabled
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 />
@@ -180,7 +179,6 @@ export default function LoginPage() {
                   type="button"
                   className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 disabled:cursor-not-allowed"
                   onClick={() => setShowPassword(!showPassword)}
-                  disabled
                 >
                   {showPassword ? (
                     <svg
@@ -229,10 +227,9 @@ export default function LoginPage() {
                   id="remember"
                   checked={rememberMe}
                   onChange={(e) => setRememberMe(e.target.checked)}
-                  disabled
                 />
                 <label
-                  className="text-sm text-gray-600 cursor-not-allowed opacity-50"
+                  className="text-sm text-gray-600"
                   htmlFor="remember"
                 >
                   {t("rememberMe")}
@@ -246,10 +243,10 @@ export default function LoginPage() {
             <button
               className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 px-4 py-2 w-full h-11 bg-gray-900 hover:bg-gray-800 text-white font-medium"
               type="submit"
-              disabled
             >
               {t("loginButton")}
             </button>
+            </fieldset>
           </form>
 
           {/* Tooltip */}
