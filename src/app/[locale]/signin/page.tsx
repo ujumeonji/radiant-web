@@ -33,8 +33,8 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-8">
+    <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-md w-full space-y-4">
         <div className="text-center">
           <h1 className="text-2xl font-semibold text-gray-900 mb-3">
             {t("login")}
@@ -105,7 +105,7 @@ export default function LoginPage() {
         </div>
 
         {/* Email Form */}
-        <form className="space-y-6" onSubmit={handleSubmit}>
+        <form className="space-y-4" onSubmit={handleSubmit}>
           <div className="space-y-2">
             <label
               className="peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-sm font-medium text-gray-700"
@@ -250,7 +250,7 @@ export default function LoginPage() {
         </form>
 
         {/* Sign Up Section */}
-        <div className="mt-8 p-4 bg-white rounded-lg border border-gray-100">
+        <div className="mt-4 p-4 bg-white rounded-lg border border-gray-100">
           <div className="text-center">
             <h3 className="font-medium text-gray-900 mb-2">
               {t("newToRadiant")}
