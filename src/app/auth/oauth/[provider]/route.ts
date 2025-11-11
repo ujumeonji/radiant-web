@@ -29,7 +29,7 @@ export async function GET(req: NextRequest, { params }: RouteParams) {
   }
 
   const currentUrl = new URL(req.url);
-  const destinationUrl = new URL(`/auth/oauth/${provider}`, backendBaseUrl);
+  const destinationUrl = new URL(`/oauth2/authorization/${provider}`, backendBaseUrl);
 
   currentUrl.searchParams.forEach((value, key) => {
     destinationUrl.searchParams.set(key, value);

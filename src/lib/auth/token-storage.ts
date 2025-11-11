@@ -3,6 +3,7 @@ export interface AuthTokens {
   accessTokenExpired: number | null;
   refreshToken?: string;
   refreshTokenExpired?: number | null;
+  accountId?: string;
 }
 
 const STORAGE_KEY = "auth.tokens";
@@ -65,6 +66,10 @@ function normalizeTokens(raw: unknown): AuthTokens | null {
     refreshTokenExpired: normalizeExpiration(
       candidate.refreshTokenExpired as string | number | null | undefined,
     ),
+    accountId:
+      typeof candidate.accountId === "string"
+        ? candidate.accountId
+        : undefined,
   };
 }
 
@@ -79,7 +84,6 @@ export function setAuthTokens(tokens: AuthTokens) {
   try {
     storage.setItem(STORAGE_KEY, JSON.stringify(tokens));
   } catch {
-    // no-op: storage quota or access issues should not break flow
   }
 }
 
@@ -94,7 +98,6 @@ export function clearAuthTokens() {
   try {
     storage.removeItem(STORAGE_KEY);
   } catch {
-    // ignore
   }
 }
 
@@ -147,19 +150,54 @@ export function getValidAccessToken(): string | null {
   return tokens.accessToken;
 }
 
+function decodeJwtExpiration(token: string): number | null {
+  try {
+    const parts = token.split(".");
+    if (parts.length !== 3) {
+      return null;
+    }
+
+    const payload = parts[1];
+    const decoded = atob(payload.replace(/-/g, "+").replace(/_/g, "/"));
+    const parsed = JSON.parse(decoded);
+
+    if (parsed.exp && typeof parsed.exp === "number") {
+      return parsed.exp * 1000;
+    }
+
+    return null;
+  } catch {
+    return null;
+  }
+}
+
 export function parseTokensFromParams(
   params: URLSearchParams,
 ): AuthTokens | null {
   const accessToken = params.get("accessToken");
 
-  if (!accessToken) {
+  if (accessToken) {
+    return {
+      accessToken,
+      accessTokenExpired: normalizeExpiration(params.get("accessTokenExpired")),
+      refreshToken: params.get("refreshToken") ?? undefined,
+      refreshTokenExpired: normalizeExpiration(params.get("refreshTokenExpired")),
+    };
+  }
+
+  const token = params.get("token");
+  const type = params.get("type");
+
+  if (!token || type !== "Bearer") {
     return null;
   }
 
+  const accountId = params.get("accountId") ?? undefined;
+  const tokenExpired = decodeJwtExpiration(token);
+
   return {
-    accessToken,
-    accessTokenExpired: normalizeExpiration(params.get("accessTokenExpired")),
-    refreshToken: params.get("refreshToken") ?? undefined,
-    refreshTokenExpired: normalizeExpiration(params.get("refreshTokenExpired")),
+    accessToken: token,
+    accessTokenExpired: tokenExpired,
+    accountId,
   };
 }
