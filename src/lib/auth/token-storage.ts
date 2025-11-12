@@ -150,6 +150,25 @@ export function getValidAccessToken(): string | null {
   return tokens.accessToken;
 }
 
+/**
+ * ISO 8601 날짜 문자열을 타임스탬프(밀리초)로 변환합니다.
+ */
+function parseIsoDate(dateString: string | null | undefined): number | null {
+  if (!dateString) {
+    return null;
+  }
+
+  try {
+    const timestamp = Date.parse(dateString);
+    return Number.isNaN(timestamp) ? null : timestamp;
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * JWT 토큰을 디코딩하여 만료 시간을 추출합니다.
+ */
 function decodeJwtExpiration(token: string): number | null {
   try {
     const parts = token.split(".");
@@ -185,6 +204,7 @@ export function parseTokensFromParams(
     };
   }
 
+  // 새로운 OAuth2 형식: token, type, accountId, expiresIn
   const token = params.get("token");
   const type = params.get("type");
 
@@ -193,7 +213,10 @@ export function parseTokensFromParams(
   }
 
   const accountId = params.get("accountId") ?? undefined;
-  const tokenExpired = decodeJwtExpiration(token);
+
+  // expiresIn 파라미터가 있으면 우선 사용, 없으면 JWT 디코딩
+  const expiresIn = params.get("expiresIn");
+  const tokenExpired = parseIsoDate(expiresIn) ?? decodeJwtExpiration(token);
 
   return {
     accessToken: token,
