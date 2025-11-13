@@ -1,12 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { useLocale, useTranslations } from "next-intl";
-import { Link } from "@/i18n/routing";
+import { useTranslations } from "next-intl";
 
 export default function LoginPage() {
   const t = useTranslations("auth");
-  const locale = useLocale();
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
