@@ -15,7 +15,8 @@
   },
   "header": {
     "home": "首页",
-    "login": "登录"
+    "login": "登录",
+    "profile": "个人资料"
   },
   "footer": {
     "slogan": "打破语言壁垒，解锁全球技术与职业洞察",

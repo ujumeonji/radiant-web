@@ -15,7 +15,8 @@
   },
   "header": {
     "home": "Home",
-    "login": "Login"
+    "login": "Login",
+    "profile": "Profile"
   },
   "footer": {
     "slogan": "Breaking Language Barriers to Unlock Global Technical and Career Insights",
