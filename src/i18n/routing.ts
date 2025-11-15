@@ -11,7 +11,7 @@ export const routing = defineRouting({
     "/forgot-password": "/forgot-password",
     "/posts/[id]": "/posts/[id]",
     "/topics/[slug]": "/topics/[slug]",
-    "/users/[username]": "/users/[username]",
+    "/users/[accountId]": "/users/[accountId]",
   } as const,
 });
 

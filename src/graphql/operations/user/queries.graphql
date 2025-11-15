@@ -18,3 +18,12 @@ query RecommendedAuthors($first: Int = 5, $after: String) {
     }
   }
 }
+
+query CurrentUser {
+  me {
+    id
+    username
+    name
+    avatarUrl
+  }
+}

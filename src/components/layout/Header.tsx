@@ -5,14 +5,20 @@ import Container from "@/components/ui/Container";
 import LanguageSelector from "@/components/ui/LanguageSelector";
 import Logo from "@/components/ui/Logo";
 import { Link } from "@/i18n/routing";
-import { Menu, X } from "lucide-react";
+import { Menu, X, User } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useState, useRef, useEffect } from "react";
+import { useQuery } from "@apollo/client";
+import Image from "next/image";
+import { CurrentUserDocument } from "@/graphql/generated/graphql";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuContainerRef = useRef<HTMLDivElement>(null);
   const t = useTranslations();
+  const { data: userData } = useQuery(CurrentUserDocument);
+
+  const currentUser = userData?.me?.__typename === 'User' ? userData.me : null;
 
   useEffect(() => {
     const handleOutsideClick = (event: MouseEvent) => {
@@ -70,6 +76,18 @@ export default function Header() {
             >
               {isMenuOpen ? (
                 <X className="h-6 w-6 text-gray-800" />
+              ) : currentUser ? (
+                currentUser.avatarUrl ? (
+                  <Image
+                    src={currentUser.avatarUrl}
+                    alt={currentUser.name}
+                    width={32}
+                    height={32}
+                    className="rounded-full object-cover"
+                  />
+                ) : (
+                  <User className="h-6 w-6 text-gray-800" />
+                )
               ) : (
                 <Menu className="h-6 w-6 text-gray-800" />
               )}
@@ -83,14 +101,25 @@ export default function Header() {
                 className="absolute right-0 top-full mt-0 w-48 bg-white border border-gray-200 z-50"
               >
                 <div className="py-2">
-                  <Link
-                    href="/signin"
-                    role="menuitem"
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    {t("header.login")}
-                  </Link>
+                  {currentUser ? (
+                    <Link
+                      href={`/users/${currentUser.id}`}
+                      role="menuitem"
+                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      {t("header.profile")}
+                    </Link>
+                  ) : (
+                    <Link
+                      href="/signin"
+                      role="menuitem"
+                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      {t("header.login")}
+                    </Link>
+                  )}
                 </div>
               </div>
             )}

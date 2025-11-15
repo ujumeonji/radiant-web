@@ -8,8 +8,8 @@ import UserProfile from "@/components/user/UserProfile";
 import { PostEdge } from "@/graphql/generated/graphql";
 
 const GET_USER_QUERY = gql`
-  query GetUser($username: String!) {
-    user(username: $username) {
+  query GetUserById($id: ID!) {
+    node(id: $id) {
       ... on User {
         id
         username
@@ -24,11 +24,6 @@ const GET_USER_QUERY = gql`
         followersCount
         followingCount
         professionalFields
-      }
-      ... on UserNotFoundError {
-        message
-        code
-        username
       }
     }
   }
@@ -64,7 +59,7 @@ const GET_USER_POSTS_QUERY = gql`
 
 export default function UserProfilePage() {
   const params = useParams();
-  const username = params.username as string;
+  const accountId = params.accountId as string;
   const t = useTranslations();
 
   const {
@@ -72,15 +67,18 @@ export default function UserProfilePage() {
     loading: userLoading,
     error: userError,
   } = useQuery(GET_USER_QUERY, {
-    variables: { username },
+    variables: { id: accountId },
   });
+
+  const user = userData?.node?.__typename === 'User' ? userData.node : null;
 
   const {
     data: postsData,
     loading: postsLoading,
     error: postsError,
   } = useQuery(GET_USER_POSTS_QUERY, {
-    variables: { username, first: 10 },
+    variables: { username: user?.username || '', first: 10 },
+    skip: !user?.username,
   });
 
   if (userLoading) {
@@ -98,20 +96,7 @@ export default function UserProfilePage() {
     );
   }
 
-  if (userError || !userData?.user) {
-    return (
-      <div className="min-h-screen bg-white">
-        <div className="max-w-4xl mx-auto px-4 py-8 text-center">
-          <h1 className="text-2xl font-bold text-gray-900 mb-4">
-            {t("error.pageNotFound")}
-          </h1>
-          <p className="text-gray-600">{t("profile.userNotFound")}</p>
-        </div>
-      </div>
-    );
-  }
-
-  if (userData.user.__typename === "UserNotFoundError") {
+  if (userError || !user) {
     return (
       <div className="min-h-screen bg-white">
         <div className="max-w-4xl mx-auto px-4 py-8 text-center">
@@ -126,7 +111,7 @@ export default function UserProfilePage() {
 
   return (
     <UserProfile
-      user={userData.user}
+      user={user}
       posts={
         postsData?.userPosts.edges?.map((edge: PostEdge) => edge.node) || []
       }
