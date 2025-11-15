@@ -1,12 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { useLocale, useTranslations } from "next-intl";
-import { Link } from "@/i18n/routing";
+import { useTranslations } from "next-intl";
 
 export default function LoginPage() {
   const t = useTranslations("auth");
-  const locale = useLocale();
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -23,11 +21,8 @@ export default function LoginPage() {
       return;
     }
 
-    const origin = window.location.origin;
-    const destination = new URL(`/auth/oauth/${provider}`, origin);
-
-    destination.searchParams.set("redirectUri", `${origin}/${locale}/signin`);
-    destination.searchParams.set("locale", locale);
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8080";
+    const destination = new URL(`/oauth2/authorization/${provider}`, apiUrl);
 
     window.location.href = destination.toString();
   };

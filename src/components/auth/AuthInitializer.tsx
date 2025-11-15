@@ -8,6 +8,10 @@ const TOKEN_QUERY_KEYS = [
   "accessTokenExpired",
   "refreshToken",
   "refreshTokenExpired",
+  "token",
+  "type",
+  "accountId",
+  "expiresIn",
 ] as const;
 
 export default function AuthInitializer() {
