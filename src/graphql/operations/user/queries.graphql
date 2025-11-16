@@ -21,9 +21,15 @@ query RecommendedAuthors($first: Int = 5, $after: String) {
 
 query CurrentUser {
   me {
-    id
-    username
-    name
-    avatarUrl
+    ... on User {
+      id
+      username
+      name
+      avatarUrl
+    }
+    ... on UnauthorizedError {
+      code
+      message
+    }
   }
 }
