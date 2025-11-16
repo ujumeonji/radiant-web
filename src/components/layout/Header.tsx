@@ -4,21 +4,31 @@ import BrandAccent from "@/components/ui/BrandAccent";
 import Container from "@/components/ui/Container";
 import LanguageSelector from "@/components/ui/LanguageSelector";
 import Logo from "@/components/ui/Logo";
-import { Link } from "@/i18n/routing";
+import { Link, useRouter } from "@/i18n/routing";
 import { Menu, X, User } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useState, useRef, useEffect } from "react";
-import { useQuery } from "@apollo/client";
+import { useQuery, useApolloClient } from "@apollo/client";
 import Image from "next/image";
 import { CurrentUserDocument } from "@/graphql/generated/graphql";
+import { clearAuthTokens } from "@/lib/auth/token-storage";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuContainerRef = useRef<HTMLDivElement>(null);
   const t = useTranslations();
+  const router = useRouter();
+  const apolloClient = useApolloClient();
   const { data: userData } = useQuery(CurrentUserDocument);
 
   const currentUser = userData?.me?.__typename === 'User' ? userData.me : null;
+
+  const handleLogout = async () => {
+    clearAuthTokens();
+    setIsMenuOpen(false);
+    await apolloClient.resetStore();
+    router.push('/');
+  };
 
   useEffect(() => {
     const handleOutsideClick = (event: MouseEvent) => {
@@ -102,14 +112,23 @@ export default function Header() {
               >
                 <div className="py-2">
                   {currentUser ? (
-                    <Link
-                      href={`/users/${currentUser.id}`}
-                      role="menuitem"
-                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors"
-                      onClick={() => setIsMenuOpen(false)}
-                    >
-                      {t("header.profile")}
-                    </Link>
+                    <>
+                      <Link
+                        href={`/users/${currentUser.id}`}
+                        role="menuitem"
+                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors"
+                        onClick={() => setIsMenuOpen(false)}
+                      >
+                        {t("header.profile")}
+                      </Link>
+                      <button
+                        role="menuitem"
+                        className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors"
+                        onClick={handleLogout}
+                      >
+                        {t("header.logout")}
+                      </button>
+                    </>
                   ) : (
                     <Link
                       href="/signin"
